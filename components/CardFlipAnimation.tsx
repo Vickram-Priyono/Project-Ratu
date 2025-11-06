@@ -27,12 +27,12 @@ const CardFlipAnimation: React.FC<CardFlipAnimationProps> = ({
     // 1. Mulai balik utama setelah animasi "gimmick" selesai
     const flipTimer = setTimeout(() => {
       setIsFlipped(true);
-    }, 800); // Durasi animasi pra-balik
+    }, 1000); // Durasi animasi pra-balik
 
     // 2. Selesaikan transisi setelah animasi balik selesai
     const completeTimer = setTimeout(() => {
       onAnimationComplete();
-    }, 2200); // 800ms (pra-balik) + 1200ms (balik) + 200ms buffer
+    }, 2700); // 1000ms (pra-balik) + 1500ms (balik) + 200ms buffer
 
     return () => {
       clearTimeout(flipTimer);
