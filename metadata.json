@@ -1,0 +1,7 @@
+{
+  "name": "Detective's Companion",
+  "description": "An interactive companion app for a murder mystery board game. Scan QR codes on cards to uncover evidence, interview witnesses, and explore locations to solve the case. A history log tracks your progress.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
