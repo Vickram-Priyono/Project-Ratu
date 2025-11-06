@@ -66,7 +66,7 @@ const App: React.FC = () => {
       case 'history':
         return <HistoryLog history={history} onSelectItem={viewItemFromHistory} onBack={() => setView('home')} />;
       case 'result':
-        return currentItem && <ResultDisplay item={currentItem} onBack={() => setView('home')} history={history} onViewItem={viewItemFromHistory} />;
+        return currentItem && <ResultDisplay item={currentItem} onBack={() => setView('home')} />;
       case 'home':
       default:
         return (
