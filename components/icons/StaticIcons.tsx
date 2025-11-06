@@ -144,23 +144,6 @@ export const ForensicsIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
-export const SparklesIcon: React.FC<IconProps> = ({ className }) => (
-  <svg
-    className={className}
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.25 10.25l.813 2.846a2.25 2.25 0 0 1-1.545 2.693l-2.846.813a2.25 2.25 0 0 1-2.693-1.545l-.813-2.846a2.25 2.25 0 0 1 1.545-2.693l2.846-.813a2.25 2.25 0 0 1 2.693 1.545Z"
-    />
-  </svg>
-);
-
 export const QuestionMarkIcon: React.FC<IconProps> = ({ className }) => (
   <svg
     className={className}
