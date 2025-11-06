@@ -107,13 +107,15 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
     <div className="fixed inset-0 bg-black z-40 flex flex-col">
       <div id={elementId} className="w-full flex-grow"></div>
        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[250px] h-[250px] border-4 border-amber-400/50 rounded-lg shadow-lg">
-          <div className="relative w-full h-full">
-            <div className="absolute -top-1 -left-1 w-10 h-10 border-t-4 border-l-4 border-amber-400"></div>
-            <div className="absolute -top-1 -right-1 w-10 h-10 border-t-4 border-r-4 border-amber-400"></div>
-            <div className="absolute -bottom-1 -left-1 w-10 h-10 border-b-4 border-l-4 border-amber-400"></div>
-            <div className="absolute -bottom-1 -right-1 w-10 h-10 border-b-4 border-r-4 border-amber-400"></div>
-          </div>
+        <div className="relative w-[250px] h-[250px]">
+            {/* Faint background box as a guide */}
+            <div className="w-full h-full border-2 border-white/20 rounded-lg shadow-lg"></div>
+            
+            {/* Prominent corners that align perfectly with the box */}
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-4 border-l-4 border-amber-400 rounded-tl-lg"></div>
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 border-amber-400 rounded-tr-lg"></div>
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-4 border-l-4 border-amber-400 rounded-bl-lg"></div>
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-4 border-r-4 border-amber-400 rounded-br-lg"></div>
         </div>
       </div>
       <div className="w-full p-4 bg-gray-900/80 backdrop-blur-sm flex justify-center sticky bottom-0">
