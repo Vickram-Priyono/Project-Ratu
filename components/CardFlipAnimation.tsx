@@ -15,24 +15,28 @@ const CardFlipAnimation: React.FC<CardFlipAnimationProps> = ({
   const [isPreFlipping, setIsPreFlipping] = useState(false);
 
   useEffect(() => {
-    // Pra-muat gambar untuk menentukan rasio aspeknya
+    let flipTimer: number;
+    let completeTimer: number;
+
     const img = new Image();
     img.onload = () => {
       setImageAspectRatio(img.naturalWidth / img.naturalHeight);
-      // Mulai animasi gimmick pra-balik sekarang setelah kita tahu dimensi gambar
+
+      // Mengurutkan animasi untuk keandalan
+      // 1. Mulai animasi "glow" pra-balik segera
       setIsPreFlipping(true);
+
+      // 2. Jadwalkan flip untuk dimulai setelah animasi "glow" selesai
+      flipTimer = window.setTimeout(() => {
+        setIsFlipped(true);
+      }, 800); // Sesuai dengan animasi "glow" 0.8 detik
+
+      // 3. Jadwalkan panggilan kembali penyelesaian setelah total waktu animasi
+      completeTimer = window.setTimeout(() => {
+        onAnimationComplete();
+      }, 2100); // 800ms glow + 1200ms flip + 100ms buffer
     };
     img.src = imageUrl;
-
-    // 1. Mulai balik utama setelah animasi "gimmick" selesai
-    const flipTimer = setTimeout(() => {
-      setIsFlipped(true);
-    }, 1000); // Durasi animasi pra-balik
-
-    // 2. Selesaikan transisi setelah animasi balik selesai
-    const completeTimer = setTimeout(() => {
-      onAnimationComplete();
-    }, 2700); // 1000ms (pra-balik) + 1500ms (balik) + 200ms buffer
 
     return () => {
       clearTimeout(flipTimer);
@@ -65,7 +69,7 @@ const CardFlipAnimation: React.FC<CardFlipAnimationProps> = ({
             <img
               src={imageUrl}
               alt="Scanned Clue"
-              className="w-full h-full rounded-lg"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
         </div>
