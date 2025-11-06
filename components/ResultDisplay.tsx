@@ -11,57 +11,10 @@ interface ResultDisplayProps {
   onViewItem: (item: HistoryItem) => void;
 }
 
-const SummaryContent: React.FC<{ content: string }> = ({ content }) => {
-  const lines = content.split('\n').filter(line => line.trim() !== '');
-  const listItems = lines.map(line => 
-    line.trim().startsWith('*') || line.trim().startsWith('•') 
-      ? line.trim().substring(1).trim() 
-      : line.trim()
-  );
-
-  return (
-    <ul className="list-disc list-inside space-y-2 text-gray-300">
-      {listItems.map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
-    </ul>
-  );
-};
-
-
 const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack, history, onViewItem }) => {
-  const [summary, setSummary] = useState<string | null>(null);
-  const [isSummaryLoading, setIsSummaryLoading] = useState<boolean>(false);
-  const [summaryError, setSummaryError] = useState<string | null>(null);
-
   const [relatedClues, setRelatedClues] = useState<HistoryItem[]>([]);
   const [isFindingClues, setIsFindingClues] = useState<boolean>(false);
   const [findCluesError, setFindCluesError] = useState<string | null>(null);
-
-  const handleGetSummary = async () => {
-    if (!item.content) return;
-    setIsSummaryLoading(true);
-    setSummary(null);
-    setSummaryError(null);
-    setRelatedClues([]); // Clear previous related clues
-    
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const prompt = `Summarize the key points from this witness statement in 2-3 bullet points for a detective's case file. Keep it concise and factual:\n\n---\n\n${item.content}`;
-      
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt,
-      });
-
-      setSummary(response.text ?? null);
-    } catch (error) {
-      console.error("Gemini API Error (Summary):", error);
-      setSummaryError("Failed to generate summary. Please try again.");
-    } finally {
-      setIsSummaryLoading(false);
-    }
-  };
   
   const handleFindRelatedClues = async () => {
     setIsFindingClues(true);
@@ -119,7 +72,7 @@ Respond with only a JSON array of strings, for example: ["EVIDENCE_001", "LOCATI
     }
   };
 
-  const canShowSummaryFeatures = useMemo(() => item.type === ItemTypes.WITNESS, [item.type]);
+  const canShowAiFeatures = useMemo(() => item.type === ItemTypes.WITNESS, [item.type]);
 
   return (
     <div className="w-full h-full bg-gray-800 flex flex-col animate-fade-in">
@@ -143,36 +96,16 @@ Respond with only a JSON array of strings, for example: ["EVIDENCE_001", "LOCATI
           className="w-full h-auto rounded-lg shadow-lg object-cover mb-6"
         />
 
-        {canShowSummaryFeatures && (
-            <div className="mb-6 space-y-3">
-                <button 
-                    onClick={handleGetSummary} 
-                    disabled={isSummaryLoading}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 disabled:bg-indigo-400 disabled:cursor-wait transition-all duration-200"
-                >
-                    <SparklesIcon className="w-5 h-5" />
-                    {isSummaryLoading ? 'Generating Summary...' : 'Get AI Summary'}
-                </button>
-            </div>
-        )}
-
-        {summaryError && <p className="text-red-400 text-center mb-4">{summaryError}</p>}
-        
-        {summary && (
-            <div className="mb-6 p-4 bg-gray-900/50 rounded-lg animate-fade-in">
-                <h3 className="text-lg font-bold text-amber-300 mb-2">AI Summary</h3>
-                <SummaryContent content={summary} />
-                
-                 <div className="mt-4 pt-4 border-t border-gray-700">
-                     <button
-                        onClick={handleFindRelatedClues}
-                        disabled={isFindingClues}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-500 disabled:bg-teal-400 disabled:cursor-wait transition-all duration-200"
-                     >
-                         <SparklesIcon className="w-5 h-5" />
-                         {isFindingClues ? 'Analyzing Connections...' : 'Find Related Clues'}
-                     </button>
-                 </div>
+        {canShowAiFeatures && (
+            <div className="mb-6 p-4 bg-gray-900/50 rounded-lg">
+                 <button
+                    onClick={handleFindRelatedClues}
+                    disabled={isFindingClues}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-500 disabled:bg-teal-400 disabled:cursor-wait transition-all duration-200"
+                 >
+                     <SparklesIcon className="w-5 h-5" />
+                     {isFindingClues ? 'Analyzing Connections...' : 'Find Related Clues'}
+                 </button>
             </div>
         )}
         
@@ -193,7 +126,6 @@ Respond with only a JSON array of strings, for example: ["EVIDENCE_001", "LOCATI
                 </ul>
             </div>
         )}
-
 
         <div
           className="prose prose-invert prose-lg max-w-none text-gray-300 whitespace-pre-wrap"
