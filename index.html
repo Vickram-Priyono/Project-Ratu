@@ -30,7 +30,7 @@
       }
       .card {
         transform-style: preserve-3d;
-        transition: transform 0.8s;
+        transition: transform 1.2s ease-in-out;
       }
       .card.is-flipped {
         transform: rotateY(180deg);
@@ -45,6 +45,24 @@
       }
       .card-face--front {
         transform: rotateY(180deg);
+      }
+
+      @keyframes pre-flip-glow {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px 5px rgba(252, 211, 77, 0.4); /* amber-300 with opacity */
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        }
+      }
+      .card.pre-flip {
+        animation: pre-flip-glow 0.8s ease-out;
       }
     </style>
     <script type="importmap">
