@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 
 // This is a global variable from the script loaded in index.html
@@ -6,9 +7,15 @@ interface Html5QrcodeResult {
   decodedText: string;
 }
 
+interface QrCamera {
+    id: string;
+    label: string;
+}
+
 interface Html5QrcodeScanner {
   start(
-    cameraConfig: { facingMode: string },
+    // The camera ID can be a string, or a constraints object
+    cameraIdOrConfig: string | { facingMode: string },
     scanConfig: { fps: number; qrbox: { width: number; height: number } },
     successCallback: (decodedText: string, result: Html5QrcodeResult) => void,
     errorCallback: (errorMessage: string) => void
@@ -19,6 +26,7 @@ interface Html5QrcodeScanner {
 
 declare const Html5Qrcode: {
   new (elementId: string): Html5QrcodeScanner;
+  getCameras(): Promise<QrCamera[]>;
 };
 
 
@@ -29,10 +37,12 @@ interface ScannerProps {
 }
 
 const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
+  // Use a ref for the scanner instance to ensure it's stable across renders
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
   const elementId = "qr-reader";
 
   useEffect(() => {
+    // Only initialize the scanner once
     if (!scannerRef.current) {
         scannerRef.current = new Html5Qrcode(elementId);
     }
@@ -42,34 +52,55 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
 
     const startScanner = async () => {
       try {
-        await html5QrCode.start(
-          { facingMode: "environment" },
-          config,
-          (decodedText: string) => {
-            onSuccess(decodedText);
-          },
-          () => {
-            // This is the error callback for scan errors, not initialization errors.
-            // We can often ignore these as the scanner keeps trying.
-            // console.warn(`QR scan error: ${errorMessage}`);
-          }
-        );
+        const cameras = await Html5Qrcode.getCameras();
+        if (cameras && cameras.length > 0) {
+          // Prefer the back camera
+          const backCamera = cameras.find(camera => camera.label.toLowerCase().includes('back'));
+          const cameraId = backCamera ? backCamera.id : cameras[0].id;
+          
+          await html5QrCode.start(
+            cameraId,
+            config,
+            (decodedText: string) => {
+              onSuccess(decodedText);
+            },
+            () => {
+              // This is the error callback for individual scan errors, not initialization errors.
+              // We can often ignore these as the scanner keeps trying.
+            }
+          );
+        } else {
+            // This case is rare if the user has a camera, but good to handle.
+            onError("No cameras found on this device. Please ensure you have a camera connected and enabled.");
+        }
       } catch (err: unknown) {
         console.error("Failed to start scanner:", err);
         const message = err instanceof Error ? err.message : "Could not start scanner.";
-        onError(message);
+        
+        // Provide more user-friendly error messages based on common issues
+        if (message.includes('Permission denied') || message.includes('NotAllowedError')) {
+            onError("Camera access denied. Please allow camera permission in your browser settings and refresh the page.");
+        } else if (message.includes('NotFoundError')) {
+            onError("No camera found. Please ensure a camera is connected and not in use by another application.");
+        } else {
+            onError(`Failed to start camera: ${message}`);
+        }
       }
     };
     
     startScanner();
 
+    // Cleanup function to stop the scanner when the component unmounts
     return () => {
+      // Check if the scanner instance exists and is actively scanning
       if (html5QrCode && html5QrCode.isScanning) {
+        // Stop the scanner and handle potential errors during cleanup
         html5QrCode.stop().catch((err: unknown) => {
           console.error("Failed to stop scanner cleanly", err);
         });
       }
     };
+    // Dependencies for the useEffect hook
   }, [onSuccess, onError]);
 
   return (

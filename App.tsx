@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useMemo } from 'react';
 import type { HistoryItem, View } from './types';
 import { getGameData } from './services/gameService';
@@ -48,7 +49,7 @@ const App: React.FC = () => {
 
   const handleScanError = useCallback((errorMessage: string) => {
     console.error(`QR Scanner Error: ${errorMessage}`);
-    setError("Failed to start scanner. Please ensure camera permissions are enabled.");
+    setError(errorMessage);
     setView('home');
     setTimeout(() => setError(null), 5000);
   }, []);

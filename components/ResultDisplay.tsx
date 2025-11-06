@@ -54,7 +54,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack, history, on
         contents: prompt,
       });
 
-      setSummary(response.text);
+      setSummary(response.text ?? null);
     } catch (error) {
       console.error("Gemini API Error (Summary):", error);
       setSummaryError("Failed to generate summary. Please try again.");
@@ -104,7 +104,7 @@ Respond with only a JSON array of strings, for example: ["EVIDENCE_001", "LOCATI
         }
       });
       
-      const relatedIds = JSON.parse(response.text);
+      const relatedIds = JSON.parse(response.text || '[]');
       const foundClues = history.filter(h => relatedIds.includes(h.id));
       setRelatedClues(foundClues);
       if (foundClues.length === 0) {
