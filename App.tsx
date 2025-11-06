@@ -1,12 +1,14 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, Suspense, lazy } from "react";
 import type { HistoryItem, View } from "./types";
 import { getGameData } from "./services/gameService";
 
-import Scanner from "./components/Scanner";
-import HistoryLog from "./components/HistoryLog";
-import ResultDisplay from "./components/ResultDisplay";
 import CardFlipAnimation from "./components/CardFlipAnimation";
 import { CameraIcon, HistoryIcon } from "./components/icons/StaticIcons";
+
+// Lazy load components for code splitting and better initial performance
+const Scanner = lazy(() => import("./components/Scanner"));
+const HistoryLog = lazy(() => import("./components/HistoryLog"));
+const ResultDisplay = lazy(() => import("./components/ResultDisplay"));
 
 const App: React.FC = () => {
   const [view, setView] = useState<View>("home");
@@ -146,7 +148,9 @@ const App: React.FC = () => {
   return (
     <div className="h-screen w-screen bg-gray-900 font-sans flex flex-col">
       <main className="flex-grow overflow-y-auto relative">
-        {renderContent()}
+        <Suspense fallback={<div className="w-full h-full bg-gray-900" />}>
+          {renderContent()}
+        </Suspense>
       </main>
 
       {view === "home" && !isFlipping && (

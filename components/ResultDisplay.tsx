@@ -52,4 +52,4 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack }) => {
   );
 };
 
-export default ResultDisplay;
+export default React.memo(ResultDisplay);
