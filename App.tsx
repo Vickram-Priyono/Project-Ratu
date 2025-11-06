@@ -1,14 +1,12 @@
-import React, { useState, useCallback, Suspense, lazy, useRef } from "react";
+import React, { useState, useCallback, useRef, useMemo } from "react";
 import type { HistoryItem, View } from "./types";
 import { getGameData } from "./services/gameService";
 
 import CardFlipAnimation from "./components/CardFlipAnimation";
+import Scanner from "./components/Scanner";
+import HistoryLog from "./components/HistoryLog";
+import ResultDisplay from "./components/ResultDisplay";
 import { CameraIcon, HistoryIcon } from "./components/icons/StaticIcons";
-
-// Lazy load components for code splitting and better initial performance
-const Scanner = lazy(() => import("./components/Scanner"));
-const HistoryLog = lazy(() => import("./components/HistoryLog"));
-const ResultDisplay = lazy(() => import("./components/ResultDisplay"));
 
 // A Base64 encoded WAV file for a subtle card flip sound.
 const CARD_FLIP_SOUND =
@@ -27,7 +25,6 @@ const App: React.FC = () => {
     if (!audioRef.current) {
       audioRef.current = new Audio(CARD_FLIP_SOUND);
       // This "play and pause" trick is necessary for some mobile browsers (especially iOS)
-      // to unlock the audio context, allowing it to be played later programmatically.
       audioRef.current.play().catch(() => {});
       audioRef.current.pause();
     }
@@ -45,40 +42,29 @@ const App: React.FC = () => {
         scannedAt: new Date().toISOString(),
       };
 
-      // Avoid adding duplicates to history, but bring existing to the front
       setHistory((prev) => {
         const filtered = prev.filter((item) => item.id !== newHistoryItem.id);
         return [newHistoryItem, ...filtered];
       });
 
       setCurrentItem(newHistoryItem);
-      setIsAnimating(true); // Trigger animation
+      setIsAnimating(true);
     } else {
       setError(`QR Code not recognized: ${qrCode}`);
+      setTimeout(() => setError(null), 5000);
     }
   }, []);
 
   const handleScanError = useCallback((errorMessage: string) => {
     setError(errorMessage);
     setView("home");
-  }, []);
-
-  const handleScanCancel = useCallback(() => {
-    setView("home");
+    setTimeout(() => setError(null), 5000);
   }, []);
 
   const handleHistorySelect = useCallback((item: HistoryItem) => {
     setCurrentItem(item);
     setView("result");
   }, []);
-
-  const handleBack = useCallback(() => {
-    if (view === "result") {
-      setView("history");
-    } else if (view === "history") {
-      setView("home");
-    }
-  }, [view]);
 
   const handleAnimationComplete = useCallback(() => {
     setIsAnimating(false);
@@ -99,85 +85,71 @@ const App: React.FC = () => {
     switch (view) {
       case "scanning":
         return (
-          <Suspense
-            fallback={
-              <div className="text-white text-center p-8">
-                Loading Scanner...
-              </div>
-            }
-          >
-            <Scanner
-              onSuccess={handleScanSuccess}
-              onError={handleScanError}
-              onCancel={handleScanCancel}
-            />
-          </Suspense>
+          <Scanner
+            onSuccess={handleScanSuccess}
+            onError={handleScanError}
+            onCancel={() => setView("home")}
+          />
         );
       case "history":
         return (
-          <Suspense
-            fallback={
-              <div className="text-white text-center p-8">
-                Loading History...
-              </div>
-            }
-          >
-            <HistoryLog
-              history={history}
-              onSelectItem={handleHistorySelect}
-              onBack={() => setView("home")}
-            />
-          </Suspense>
+          <HistoryLog
+            history={history}
+            onSelectItem={handleHistorySelect}
+            onBack={() => setView("home")}
+          />
         );
       case "result":
-        return currentItem ? (
-          <Suspense
-            fallback={
-              <div className="text-white text-center p-8">
-                Loading Result...
-              </div>
-            }
-          >
-            <ResultDisplay item={currentItem} onBack={handleBack} />
-          </Suspense>
-        ) : (
-          <div className="text-center p-8">
-            <p className="text-gray-400">No item selected.</p>
-            <button
-              onClick={() => setView("home")}
-              className="mt-4 text-amber-400"
-            >
-              Go Home
-            </button>
-          </div>
+        return (
+          currentItem && (
+            <ResultDisplay
+              item={currentItem}
+              onBack={() => setView("history")}
+            />
+          )
         );
       case "home":
       default:
         return (
           <div className="flex flex-col items-center justify-center h-full text-center p-8">
-            <h1 className="text-4xl font-bold text-amber-300 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
-              Case Closed
-            </h1>
-            <p className="text-lg text-gray-300 mt-2">
-              Scan QR codes to uncover clues.
-            </p>
-            {error && (
-              <div className="mt-4 p-3 bg-red-900/50 border border-red-700 rounded-md text-red-300 w-full max-w-sm">
-                <p className="font-bold">Error</p>
-                <p className="text-sm mt-1">{error}</p>
-                <button
-                  onClick={() => setError(null)}
-                  className="mt-2 text-xs underline hover:text-white"
-                >
-                  Dismiss
-                </button>
+            <div className="mb-8">
+              <h1
+                className="text-4xl md:text-5xl font-bold text-amber-300 tracking-wider"
+                style={{ fontFamily: "monospace" }}
+              >
+                CASE FILE
+              </h1>
+              <p className="text-gray-400 mt-2">
+                Scan QR codes on cards to uncover clues.
+              </p>
+            </div>
+
+            <div
+              onClick={handleStartScan}
+              className="group flex flex-col items-center justify-center cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === "Enter" || e.key === " ") handleStartScan();
+              }}
+              aria-label="Scan for a new clue"
+            >
+              <div className="flex items-center justify-center w-48 h-48 bg-gray-800 rounded-full border-4 border-amber-400/50 group-hover:border-amber-400/100 shadow-lg group-hover:shadow-amber-400/20 transition-all duration-300 transform group-hover:scale-105">
+                <CameraIcon className="w-20 h-20 text-gray-400 group-hover:text-amber-300 transition-colors duration-300" />
               </div>
-            )}
+              <p className="mt-4 text-lg font-semibold text-gray-300 group-hover:text-amber-300 transition-colors duration-300">
+                Scan Clue
+              </p>
+            </div>
           </div>
         );
     }
   };
 
+  const MemoizedHistoryIcon = useMemo(
+    () => <HistoryIcon className="w-7 h-7" />,
+    []
+  );
   const showFooter = view === "home" && !isAnimating;
 
   return (
@@ -185,31 +157,22 @@ const App: React.FC = () => {
       <div className="flex-grow overflow-auto">{renderContent()}</div>
 
       {showFooter && (
-        <footer className="w-full p-4 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 flex justify-around items-center sticky bottom-0 z-10">
+        <footer className="w-full p-4 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 flex justify-center items-center sticky bottom-0 z-10">
           <button
             onClick={() => setView("history")}
             disabled={history.length === 0}
-            className="flex flex-col items-center text-gray-400 hover:text-white transition-colors disabled:opacity-50 disabled:hover:text-gray-400"
+            className="flex items-center gap-2 px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            <HistoryIcon className="w-7 h-7" />
-            <span className="text-xs mt-1">History</span>
+            {MemoizedHistoryIcon}
+            View History ({history.length})
           </button>
-          <button
-            onClick={handleStartScan}
-            className="p-4 rounded-full bg-amber-500 text-gray-900 -mt-12 shadow-lg shadow-amber-500/30 border-4 border-gray-900 hover:bg-amber-400 transition-colors"
-            aria-label="Scan new clue"
-          >
-            <CameraIcon className="w-8 h-8" />
-          </button>
-          {/* Invisible placeholder to keep the center scan button perfectly centered */}
-          <div
-            className="flex flex-col items-center invisible"
-            aria-hidden="true"
-          >
-            <div className="w-7 h-7" />
-            <span className="text-xs mt-1">&nbsp;</span>
-          </div>
         </footer>
+      )}
+
+      {error && (
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-red-800/90 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+          <p>{error}</p>
+        </div>
       )}
     </main>
   );
