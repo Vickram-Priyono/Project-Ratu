@@ -104,10 +104,10 @@ const App: React.FC = () => {
                 className="text-4xl md:text-5xl font-bold text-amber-300 tracking-wider"
                 style={{ fontFamily: "monospace" }}
               >
-                CASE FILE
+                Detectified
               </h1>
               <p className="text-gray-400 mt-2">
-                Scan QR codes on cards to uncover clues.
+                Pindai QR code pada kartu untuk mendapatkan alibi atau bukti
               </p>
             </div>
 
@@ -125,7 +125,7 @@ const App: React.FC = () => {
                 <CameraIcon className="w-20 h-20 text-gray-400 group-hover:text-amber-300 transition-colors duration-300" />
               </div>
               <p className="mt-4 text-lg font-semibold text-gray-300 group-hover:text-amber-300 transition-colors duration-300">
-                Scan Clue
+                Klik Untuk Memindai
               </p>
             </div>
           </div>
