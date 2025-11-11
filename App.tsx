@@ -10,6 +10,43 @@ import { CameraIcon, HistoryIcon } from "./components/icons/StaticIcons";
 
 const VIEW_ORDER: View[] = ["home", "history", "result"];
 
+// Helper functions for fullscreen mode, triggered on user interaction.
+const isMobileDevice = () => {
+  // Simple regex to detect most mobile user agents.
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+};
+
+const requestAppFullScreen = () => {
+  const element = document.documentElement as any;
+
+  // Check if not already in fullscreen mode to avoid errors.
+  if (
+    !document.fullscreenElement &&
+    !(document as any).mozFullScreenElement && // Firefox
+    !(document as any).webkitFullscreenElement && // Chrome, Safari, Opera
+    !(document as any).msFullscreenElement // IE/Edge
+  ) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen().catch((err: Error) => {
+        console.warn(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+    } else if (element.mozRequestFullScreen) {
+      // Firefox
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      // Chrome, Safari and Opera
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      // IE/Edge
+      element.msRequestFullscreen();
+    }
+  }
+};
+
 // FIX: Allow `intensity` to be a number or an array of numbers (VibratePattern) to support custom vibration patterns.
 const triggerHapticFeedback = (intensity: number | number[] = 50) => {
   if (navigator.vibrate) {
@@ -50,6 +87,10 @@ const App: React.FC = () => {
   };
 
   const handleStartScan = () => {
+    // On mobile, request fullscreen for a more immersive experience.
+    if (isMobileDevice()) {
+      requestAppFullScreen();
+    }
     triggerHapticFeedback();
     setError(null);
     setView("scanning"); // Scanning is an overlay, no slide transition
@@ -104,6 +145,7 @@ const App: React.FC = () => {
     if (isAnimating && currentItem) {
       return (
         <CardFlipAnimation
+          key={currentItem.scannedAt}
           imageUrl={currentItem.imageUrl}
           onAnimationComplete={handleAnimationComplete}
         />
