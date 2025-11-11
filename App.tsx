@@ -154,7 +154,7 @@ const App: React.FC = () => {
                     </h1>
                     <p className="text-gray-400 mt-2">
                       Pindai QR code pada kartu untuk mendapatkan alibi atau
-                      bukti
+                      bukti.
                     </p>
                   </div>
 
@@ -172,7 +172,7 @@ const App: React.FC = () => {
                       <CameraIcon className="w-20 h-20 text-gray-400 group-hover:text-amber-300 transition-colors duration-300" />
                     </div>
                     <p className="mt-4 text-lg font-semibold text-gray-300 group-hover:text-amber-300 transition-colors duration-300">
-                      Klik Untuk Memindai
+                      Klik untuk Memindai
                     </p>
                   </div>
                 </div>
