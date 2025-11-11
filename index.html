@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detective's Companion</title>
+    <title>Detectified</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://unpkg.com/html5-qrcode"
@@ -63,6 +63,50 @@
       }
       .card.pre-flip {
         animation: pre-flip-glow 0.8s ease-out;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 10px rgba(252, 211, 77, 0.3);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 25px rgba(252, 211, 77, 0.6);
+          transform: scale(1.03);
+        }
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 3s infinite ease-in-out;
+      }
+
+      /* Page Transition Animations */
+      @keyframes slide-in-from-right {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .animate-slide-in-right {
+        animation: slide-in-from-right 0.3s ease-out forwards;
+      }
+
+      @keyframes slide-in-from-left {
+        from {
+          transform: translateX(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .animate-slide-in-left {
+        animation: slide-in-from-left 0.3s ease-out forwards;
       }
     </style>
     <script type="importmap">
