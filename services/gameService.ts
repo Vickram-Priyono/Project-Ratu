@@ -27,6 +27,14 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
       "Arief menegaskan bahwa ia tidak bekerja atau mengunjungi rumah kedua Helda dan Dimas pada hari Rabu, 9 November 2011 dan mengaku menghabiskan malam itu di rumahnya bersama keluarganya. Beberapa hari setelah penemuan jasad Ibu Helda diberitakan, Pak Dimas menelepon Arief dan memintanya untuk segera membersihkan rumput di halaman rumah. Meskipun ada rasa takut karena tragedi yang menimpa Helda, Mas Arief tetap datang.\n\nSaat bekerja di halaman depan rumah pada siang hari tanggal 15 November 2011, Mas Arief dapat mencium bau pewangi samar yang datang dari dalam rumah. Ia tidak berpikir aneh, tapi itu menjadi detail yang ingin ia sampaikan kepada penyidik.",
     icon: WitnessIcon,
   },
+  DIMAS_PRAKASA: {
+    type: "Suami",
+    title: "Dimas Prakasa",
+    subtitle: "Suami",
+    imageUrl: "/C003.webp",
+    content: "",
+    icon: WitnessIcon,
+  },
   ARIEF_M_2: {
     type: "Tetangga",
     title: "Arief M",
