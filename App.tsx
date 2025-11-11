@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import type { HistoryItem, View } from "./types";
 import { getGameData } from "./services/gameService";
 
