@@ -2,16 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>Detectified</title>
+
+    <!-- PWA & Mobile App Meta Tags -->
+    <meta name="theme-color" content="#111827" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Detectified" />
+
+    <!-- Data URI for the Web App Manifest -->
+    <link
+      rel="manifest"
+      href="data:application/manifest+json;base64,ew0KICAibmFtZSI6ICJEZXRlY3RpZmllZCIsDQogICJzaG9ydF9uYW1lIjogIkRldGVjdGlmaWVkIiwNCiAgImRlc2NyaXB0aW9uIjogIkFuIGludGVyYWN0aXZlIGNvbXBhbmlvbiBhcHAgZm9yIGEgbXVyZGVyIG15c3RlcnkgYm9hcmQgZ2FtZS4iLA0KICAic3RhcnRfdXJsIjogIi8iLA0KICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwNCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzExMTgyNyIsDQogICJ0aGVtZV9jb2xvciI6ICIjMTExODI3IiwNCiAgImljb25zIjogWw0KICAgIHsNCiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz4lM0NyZWN0IHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMjAnIGZpbGw9JyMxMTE4MjcnLz4lM0NjaXJjbGUgY3g9JzQ1JyBjeT0nNDUnIHI9JzI1JyBzdHJva2U9JyNGQkJGMjQnIHN0cm9rZS13aWR0aD0nMTAnIGZpbGw9J25vbmUnLz4lM0NsaW5lIHgxPSc2NScgeTE9JzY1JyB4Mj0nODUnIHkyPSc4NScgc3Ryb2tlPScjRkBCRjI0JyBzdHJva2Utd2lkdGg9JzEwJyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz4lM0Mvc3ZnPiIsDQogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsDQogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIg0KICAgIH0sDQogICAgew0KICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnPiUzQ3JlY3Qgd2lkdGg9JzEwMCcgaGVpZHRoPScxMDAnIHJ4PScyMCcgZmlsbD0nIzExMTgyNycvPiUzQ2NpcmNsZSBjeD0nNDUnIGN5PSc0NScgcj0nMjUnIHN0cm9rZT0nI0ZCQkYyNCcgc3Ryb2tlLXdpZHRoPScxMCcgZmlsbD0nbm9uZScvPiUzQ2xpbmUgeDE9JzY1JyB5MT0nNjUnIHgyPSc4NScgeTI9Jzg1JyBzdHJva2U9JyNGQkJGMjQnIHN0cm9rZS13aWR0aD0nMTAnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPiUzQy9zdmc+Ig0KICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCINCiAgICB9DQogIF0NCn0="
+    />
+
+    <!-- Apple Touch Icon -->
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23111827'/%3E%3Ccircle cx='45' cy='45' r='25' stroke='%23FBBF24' stroke-width='10' fill='none'/%3E%3Cline x1='65' y1='65' x2='85' y2='85' stroke='%23FBBF24' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://unpkg.com/html5-qrcode"
       type="text/javascript"
     ></script>
     <style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
       body {
         overscroll-behavior: none;
+        padding-top: var(--safe-area-inset-top);
+        padding-bottom: var(--safe-area-inset-bottom);
+        padding-left: var(--safe-area-inset-left);
+        padding-right: var(--safe-area-inset-right);
+      }
+      #root {
+        height: 100vh;
+      }
+      header.sticky {
+        padding-top: calc(1rem + var(--safe-area-inset-top));
+      }
+      footer.sticky {
+        padding-bottom: calc(1rem + var(--safe-area-inset-bottom));
       }
       /* Force the video stream to cover its container, fixing fullscreen issues on mobile */
       #qr-reader video {
@@ -108,6 +152,35 @@
       .animate-slide-in-left {
         animation: slide-in-from-left 0.3s ease-out forwards;
       }
+
+      /* Scanner Transition Animations */
+      @keyframes slide-in-from-bottom {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .animate-slide-in-from-bottom {
+        animation: slide-in-from-bottom 0.3s ease-out forwards;
+      }
+
+      @keyframes slide-out-to-bottom {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+      .animate-slide-out-to-bottom {
+        animation: slide-out-to-bottom 0.3s ease-out forwards;
+      }
     </style>
     <script type="importmap">
       {
@@ -126,5 +199,63 @@
   <body class="bg-gray-900 text-white antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Service Worker for Offline Functionality
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").then(
+            (registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            },
+            (err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+    </script>
+    <script id="sw-script">
+      const CACHE_NAME = "detectified-cache-v1";
+      const urlsToCache = [
+        "/",
+        "/index.html",
+        "/index.tsx",
+        "https://cdn.tailwindcss.com",
+        "https://unpkg.com/html5-qrcode",
+      ];
+
+      self.addEventListener("install", (event) => {
+        event.waitUntil(
+          caches.open(CACHE_NAME).then((cache) => {
+            console.log("Opened cache");
+            return cache.addAll(urlsToCache);
+          })
+        );
+      });
+
+      self.addEventListener("fetch", (event) => {
+        event.respondWith(
+          caches.match(event.request).then((response) => {
+            if (response) {
+              return response;
+            }
+            return fetch(event.request);
+          })
+        );
+      });
+    </script>
+    <script>
+      // Create a blob from the service worker script content
+      const swScript = document.getElementById("sw-script").textContent;
+      const swBlob = new Blob([swScript], { type: "application/javascript" });
+      const swUrl = URL.createObjectURL(swBlob);
+      // Register the service worker from the blob URL
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register(swUrl);
+      }
+    </script>
   </body>
 </html>

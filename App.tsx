@@ -10,6 +10,17 @@ import { CameraIcon, HistoryIcon } from "./components/icons/StaticIcons";
 
 const VIEW_ORDER: View[] = ["home", "history", "result"];
 
+// FIX: Allow `intensity` to be a number or an array of numbers (VibratePattern) to support custom vibration patterns.
+const triggerHapticFeedback = (intensity: number | number[] = 50) => {
+  if (navigator.vibrate) {
+    try {
+      navigator.vibrate(intensity);
+    } catch (e) {
+      console.warn("Haptic feedback failed.", e);
+    }
+  }
+};
+
 const App: React.FC = () => {
   const [view, setView] = useState<View>("home");
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -39,6 +50,7 @@ const App: React.FC = () => {
   };
 
   const handleStartScan = () => {
+    triggerHapticFeedback();
     setError(null);
     setView("scanning"); // Scanning is an overlay, no slide transition
   };
@@ -53,6 +65,8 @@ const App: React.FC = () => {
         scannedAt: new Date().toISOString(),
       };
 
+      triggerHapticFeedback(100); // A stronger vibration for success
+
       setHistory((prev) => {
         const filtered = prev.filter((item) => item.id !== newHistoryItem.id);
         return [newHistoryItem, ...filtered];
@@ -61,18 +75,21 @@ const App: React.FC = () => {
       setCurrentItem(newHistoryItem);
       setIsAnimating(true);
     } else {
+      triggerHapticFeedback([100, 50, 100]); // Vibrate pattern for error
       setError(`QR Code not recognized: ${qrCode}`);
       setTimeout(() => setError(null), 5000);
     }
   }, []);
 
   const handleScanError = useCallback((errorMessage: string) => {
+    triggerHapticFeedback([100, 50, 100]); // Vibrate pattern for error
     setError(errorMessage);
     setView("home");
     setTimeout(() => setError(null), 5000);
   }, []);
 
   const handleHistorySelect = useCallback((item: HistoryItem) => {
+    triggerHapticFeedback();
     setCurrentItem(item);
     navigateTo("result");
   }, []);
@@ -179,7 +196,10 @@ const App: React.FC = () => {
       {showFooter && (
         <footer className="w-full p-4 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 flex justify-center items-center sticky bottom-0 z-10">
           <button
-            onClick={() => navigateTo("history")}
+            onClick={() => {
+              triggerHapticFeedback();
+              navigateTo("history");
+            }}
             disabled={history.length === 0}
             className="flex items-center gap-2 px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed transition-colors duration-200"
           >
