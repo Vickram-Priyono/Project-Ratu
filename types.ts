@@ -1,20 +1,10 @@
-import type React from 'react';
+import type React from "react";
 
-export type View = 'home' | 'scanning' | 'result' | 'history';
-
-// Using a const object for better tree-shaking and to avoid enum issues with some TS configs.
-export const ItemTypes = {
-  EVIDENCE: 'EVIDENCE',
-  WITNESS: 'WITNESS',
-  LOCATION: 'LOCATION',
-  FORENSICS: 'FORENSICS',
-} as const;
-
-export type ItemType = typeof ItemTypes[keyof typeof ItemTypes];
+export type View = "home" | "scanning" | "result" | "history";
 
 export interface GameDataItem {
   id: string;
-  type: ItemType;
+  type: string; // Changed from ItemType to string for flexibility
   title: string;
   subtitle: string;
   content: string;

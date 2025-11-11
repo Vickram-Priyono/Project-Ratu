@@ -1,9 +1,8 @@
 import type { GameDataItem } from "../types";
-import { ItemTypes } from "../types";
 import {
   WitnessIcon,
   EvidenceIcon,
-  LocationIcon,
+  // LocationIcon,
   ForensicsIcon,
 } from "../components/icons/StaticIcons";
 
@@ -11,7 +10,7 @@ import {
 // The key is the string that the QR code will contain.
 const gameData: Record<string, Omit<GameDataItem, "id">> = {
   MAHESA_ANDI_D: {
-    type: ItemTypes.WITNESS,
+    type: "Saksi",
     title: "Mahesa Andi D.",
     subtitle: "Teman Kerja",
     imageUrl: "/C001.webp",
@@ -20,43 +19,65 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
   },
   ARIEF_M: {
-    type: ItemTypes.WITNESS,
+    type: "Tukang Rumput",
     title: "Arief M.",
-    subtitle: "Tukang Rumput",
+    subtitle: "Pekerja Kebun",
     imageUrl: "/C002.webp",
     content:
       "Arief menegaskan bahwa ia tidak bekerja atau mengunjungi rumah kedua Helda dan Dimas pada hari Rabu, 9 November 2011 dan mengaku menghabiskan malam itu di rumahnya bersama keluarganya. Beberapa hari setelah penemuan jasad Ibu Helda diberitakan, Pak Dimas menelepon Arief dan memintanya untuk segera membersihkan rumput di halaman rumah. Meskipun ada rasa takut karena tragedi yang menimpa Helda, Mas Arief tetap datang.\n\nSaat bekerja di halaman depan rumah pada siang hari tanggal 15 November 2011, Mas Arief dapat mencium bau pewangi samar yang datang dari dalam rumah. Ia tidak berpikir aneh, tapi itu menjadi detail yang ingin ia sampaikan kepada penyidik.",
     icon: WitnessIcon,
   },
-  DIMAS_PRAKASA: {
-    type: ItemTypes.WITNESS,
-    title: "Dimas Prakasa",
+  ARIEF_M_2: {
+    type: "Tetangga",
+    title: "Arief M",
     subtitle: "Suami",
-    imageUrl: "/C003.webp",
-    content:
-      "Dimas menyatakan bahwa pada hari Rabu, 9 November 2011, Sdr. Helda berpamitan kepadanya untuk dinas di daerah Pluit, Jakarta Utara. Helda mengabarkan tidak akan pulang malam itu karena keesokan paginya masih harus kembali ke tempat dinas. Helda berencana menginap di rumah kedua milik mereka yang berlokasi dekat dengan tempat dinasnya di Pluit. Setelah dikabarkan oleh Helda, Dimas melanjutkan harinya dengan pergi ke tempat kerja. Ia pulang ke rumah pada pukul 18.00 WIB.\n\nSelama periode malam Rabu hingga Kamis pagi (9-10 November 2011), Dimas mengaku menghabiskan waktunya di kediaman utama mereka di Cakung. Dimas menunjukkan call log telepon terakhir dengan Helda pada pukul 21.00 WIB tanggal 9 November 2011, di mana Helda mengabarkan sudah sampai di rumah kedua. Sisa malamnya ia habiskan di rumah dan ia pergi tidur pada pukul 22.00 WIB.",
+    imageUrl: "/C004.webp",
+    content: "",
     icon: WitnessIcon,
   },
-  EVIDENCE_001: {
-    type: ItemTypes.EVIDENCE,
-    title: "Ponsel Milik Helda",
-    subtitle: "Barang Bukti #001",
-    imageUrl: "/evidence_phone.png",
-    content:
-      'Ponsel ditemukan di dalam tas tangan Helda. Log panggilan terakhir menunjukkan panggilan masuk dari "Mahesa Andi D." pada pukul 22.45 WIB, 9 November 2011, yang tidak terjawab. Tidak ada pesan teks atau aktivitas mencurigakan lainnya setelah waktu itu.',
-    icon: EvidenceIcon,
+  DIMAS_PRAKASA_2: {
+    type: "Suami",
+    title: "Dimas Prakasa",
+    subtitle: "Suami",
+    imageUrl: "/C005.webp",
+    content: "",
+    icon: WitnessIcon,
   },
-  LOCATION_PLUIT: {
-    type: ItemTypes.LOCATION,
-    title: "Rumah Kedua di Pluit",
-    subtitle: "Tempat Kejadian Perkara",
-    imageUrl: "/location_pluit.png",
+  Larasati: {
+    type: "ART Keluarga",
+    title: "Larasati",
+    subtitle: "ART Keluarga",
+    imageUrl: "/C007.webp",
+    content: "",
+    icon: WitnessIcon,
+  },
+  Ibu_Lastri: {
+    type: "Tetangga",
+    title: "Ibu Lastri",
+    subtitle: "Tetangga",
+    imageUrl: "/C008.webp",
+    content: "",
+    icon: WitnessIcon,
+  },
+  Risa: {
+    type: "Istri Arief",
+    title: "Risa",
+    subtitle: "Istri Arief",
+    imageUrl: "/C009.webp",
+    content: "",
+    icon: WitnessIcon,
+  },
+  CCTV: {
+    type: "CCTV",
+    title: "CCTV",
+    subtitle: "CCTV",
+    imageUrl: "/C006.webp",
     content:
       "Rumah dua lantai yang terawat baik di area perumahan yang tenang. Tidak ada tanda-tanda masuk paksa. Tim forensik menemukan jejak pembersih lantai dengan aroma lemon yang kuat di area ruang tamu, tidak sesuai dengan produk pembersih yang biasa digunakan oleh asisten rumah tangga keluarga.",
-    icon: LocationIcon,
+    icon: EvidenceIcon,
   },
   FORENSICS_REPORT_A: {
-    type: ItemTypes.FORENSICS,
+    type: "Forensik",
     title: "Laporan Forensik Awal",
     subtitle: "Lab Kriminalistik Jakarta",
     imageUrl: "/forensics_report.png",
