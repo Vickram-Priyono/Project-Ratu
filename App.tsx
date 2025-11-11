@@ -30,24 +30,31 @@ const App: React.FC = () => {
   const [animationClass, setAnimationClass] = useState("");
 
   const navigateTo = useCallback(
-    (newView: View) => {
-      const currentIndex = VIEW_ORDER.indexOf(view);
-      const newIndex = VIEW_ORDER.indexOf(newView);
+    (newView: View, animationType: "slide" | "none" = "slide") => {
+      let animationName = "";
 
-      if (newIndex > currentIndex) {
-        setAnimationClass("animate-slide-in-right");
-      } else if (newIndex < currentIndex) {
-        setAnimationClass("animate-slide-in-left");
-      } else {
-        setAnimationClass("animate-fade-in"); // Fallback for no directional change
+      if (animationType === "slide") {
+        const currentIndex = VIEW_ORDER.indexOf(view);
+        const newIndex = VIEW_ORDER.indexOf(newView);
+
+        if (newIndex > currentIndex) {
+          animationName = "animate-slide-in-right";
+        } else if (newIndex < currentIndex) {
+          animationName = "animate-slide-in-left";
+        } else {
+          animationName = "animate-fade-in";
+        }
       }
+      // if type is 'none', animationName is empty string, which is correct.
 
+      setAnimationClass(animationName);
       setView(newView);
 
-      // Remove the animation class after it has played
-      setTimeout(() => {
-        setAnimationClass("");
-      }, 300); // Must match animation duration
+      if (animationName) {
+        setTimeout(() => {
+          setAnimationClass("");
+        }, 300);
+      }
     },
     [view]
   );
@@ -102,7 +109,7 @@ const App: React.FC = () => {
 
   const handleAnimationComplete = useCallback(() => {
     setIsAnimating(false);
-    navigateTo("result");
+    navigateTo("result", "none");
   }, [navigateTo]);
 
   const renderContent = () => {

@@ -37,7 +37,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
   },
   ARIEF_M_2: {
     type: "Tetangga",
-    title: "Arief M",
+    title: "Arief M.",
     subtitle: "Suami",
     imageUrl: "/C004.webp",
     content: "",
