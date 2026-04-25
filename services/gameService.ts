@@ -1,10 +1,55 @@
-import type { GameDataItem } from "../types";
+import type { GameDataItem, Character } from "../types";
 import {
   WitnessIcon,
   EvidenceIcon,
   // LocationIcon,
   ForensicsIcon,
 } from "../components/icons/StaticIcons";
+
+export const charactersData: Character[] = [
+  {
+    id: "mahesa",
+    name: "Mahesa Andi D.",
+    role: "Teman Kerja",
+    description: "Rekan kerja Helda yang memiliki hubungan dekat.",
+    imageUrl: "/C001.webp",
+  },
+  {
+    id: "arief",
+    name: "Arief M.",
+    role: "Pekerja Kebun",
+    description: "Tukang rumput yang sering bekerja di rumah Helda dan Dimas.",
+    imageUrl: "/C002.webp",
+  },
+  {
+    id: "dimas",
+    name: "Dimas Prakasa",
+    role: "Suami",
+    description: "Suami dari Helda, korban pembunuhan.",
+    imageUrl: "/C005.webp",
+  },
+  {
+    id: "larasati",
+    name: "Larasati",
+    role: "ART Keluarga",
+    description: "Asisten Rumah Tangga yang bekerja untuk Helda dan Dimas.",
+    imageUrl: "/C007.webp",
+  },
+  {
+    id: "lastri",
+    name: "Ibu Lastri",
+    role: "Tetangga",
+    description: "Tetangga di sekitar rumah kejadian.",
+    imageUrl: "/C008.webp",
+  },
+  {
+    id: "risa",
+    name: "Risa",
+    role: "Istri Arief",
+    description: "Istri dari Arief M.",
+    imageUrl: "/C009.webp",
+  }
+];
 
 // This acts as a database of all scannable items in the game.
 // The key is the string that the QR code will contain.
@@ -17,6 +62,8 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content:
       "Andi mengonfirmasi bahwa setelah menyelesaikan urusan dinas, mereka berdua singgah di rumah kedua milik Helda, yang biasa digunakan untuk kebutuhan dinas. Andi menyatakan, pada malam 9 November 2011, sekitar pukul 23.00 WIB, terjadi pertengkaran hebat antara dirinya dan Helda di rumah tersebut. Pertengkaran itu dipicu oleh janji Helda untuk meninggalkan suaminya yang tak kunjung ditepati, yang membuat Sdr. Andi sangat emosi dan lelah. Namun, Andi bersumpah bahwa ia tidak mungkin sekeji itu menghabisi Helda.\n\nSekitar pukul 23.30 WIB, ia meninggalkan Helda sendirian di rumah tersebut karena kesal dan frustasi, lalu langsung pulang ke kediamannya di Pancoran. Ia tiba pukul 00.30 WIB dini hari, 10 November 2011, dan dapat menunjukkan riwayat tol serta bukti e-toll perjalanannya dari Jakarta Utara menuju Pancoran.",
     icon: WitnessIcon,
+    characterId: "mahesa",
+    isAlibi: true,
   },
   ARIEF_M: {
     type: "Tukang Rumput",
@@ -26,59 +73,63 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content:
       "Arief menegaskan bahwa ia tidak bekerja atau mengunjungi rumah kedua Helda dan Dimas pada hari Rabu, 9 November 2011 dan mengaku menghabiskan malam itu di rumahnya bersama keluarganya. Beberapa hari setelah penemuan jasad Ibu Helda diberitakan, Pak Dimas menelepon Arief dan memintanya untuk segera membersihkan rumput di halaman rumah. Meskipun ada rasa takut karena tragedi yang menimpa Helda, Mas Arief tetap datang.\n\nSaat bekerja di halaman depan rumah pada siang hari tanggal 15 November 2011, Mas Arief dapat mencium bau pewangi samar yang datang dari dalam rumah. Ia tidak berpikir aneh, tapi itu menjadi detail yang ingin ia sampaikan kepada penyidik.",
     icon: WitnessIcon,
-  },
-  DIMAS_PRAKASA: {
-    type: "Suami",
-    title: "Dimas Prakasa",
-    subtitle: "Suami",
-    imageUrl: "/C003.webp",
-    content: "",
-    icon: WitnessIcon,
+    characterId: "arief",
+    isAlibi: true,
   },
   ARIEF_M_2: {
     type: "Tetangga",
-    title: "Arief M.",
-    subtitle: "Suami",
+    title: "Arief M",
+    subtitle: "Pekerja Kebun", // Changed from Suami since Arief is Pekerja Kebun
     imageUrl: "/C004.webp",
-    content: "",
+    content: "Informasi tambahan dari Arief.",
     icon: WitnessIcon,
+    characterId: "arief",
+    isAlibi: false,
   },
   DIMAS_PRAKASA_2: {
-    type: "Suami",
+    type: "Saksi",
     title: "Dimas Prakasa",
     subtitle: "Suami",
     imageUrl: "/C005.webp",
-    content: "",
+    content: "Pernyataan dari Dimas Prakasa.",
     icon: WitnessIcon,
+    characterId: "dimas",
+    isAlibi: true,
   },
   Larasati: {
-    type: "ART Keluarga",
+    type: "Saksi",
     title: "Larasati",
     subtitle: "ART Keluarga",
     imageUrl: "/C007.webp",
-    content: "",
+    content: "Pernyataan dari Larasati.",
     icon: WitnessIcon,
+    characterId: "larasati",
+    isAlibi: true,
   },
   Ibu_Lastri: {
-    type: "Tetangga",
+    type: "Saksi",
     title: "Ibu Lastri",
     subtitle: "Tetangga",
     imageUrl: "/C008.webp",
-    content: "",
+    content: "Pernyataan dari Ibu Lastri.",
     icon: WitnessIcon,
+    characterId: "lastri",
+    isAlibi: true,
   },
   Risa: {
-    type: "Istri Arief",
+    type: "Saksi",
     title: "Risa",
     subtitle: "Istri Arief",
     imageUrl: "/C009.webp",
-    content: "",
+    content: "Pernyataan dari Risa.",
     icon: WitnessIcon,
+    characterId: "risa",
+    isAlibi: true,
   },
   CCTV: {
-    type: "CCTV",
+    type: "Bukti",
     title: "CCTV",
-    subtitle: "CCTV",
+    subtitle: "Rekaman Keamanan",
     imageUrl: "/C006.webp",
     content:
       "Rumah dua lantai yang terawat baik di area perumahan yang tenang. Tidak ada tanda-tanda masuk paksa. Tim forensik menemukan jejak pembersih lantai dengan aroma lemon yang kuat di area ruang tamu, tidak sesuai dengan produk pembersih yang biasa digunakan oleh asisten rumah tangga keluarga.",

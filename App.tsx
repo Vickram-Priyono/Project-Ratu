@@ -1,14 +1,16 @@
 import React, { useState, useCallback, useMemo } from "react";
-import type { HistoryItem, View } from "./types";
+import type { HistoryItem, View, Character } from "./types";
 import { getGameData } from "./services/gameService";
 
 import CardFlipAnimation from "./components/CardFlipAnimation";
 import Scanner from "./components/Scanner";
 import HistoryLog from "./components/HistoryLog";
 import ResultDisplay from "./components/ResultDisplay";
-import { CameraIcon, HistoryIcon } from "./components/icons/StaticIcons";
+import CharacterGallery from "./components/CharacterGallery";
+import CharacterDetail from "./components/CharacterDetail";
+import { CameraIcon, HistoryIcon, UsersIcon } from "./components/icons/StaticIcons";
 
-const VIEW_ORDER: View[] = ["home", "history", "result"];
+const VIEW_ORDER: View[] = ["home", "history", "result", "gallery", "character_detail"];
 
 // FIX: Allow `intensity` to be a number or an array of numbers (VibratePattern) to support custom vibration patterns.
 const triggerHapticFeedback = (intensity: number | number[] = 50) => {
@@ -25,15 +27,16 @@ const App: React.FC = () => {
   const [view, setView] = useState<View>("home");
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [currentItem, setCurrentItem] = useState<HistoryItem | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
 
   const navigateTo = useCallback(
-    (newView: View, animationType: "slide" | "none" = "slide") => {
+    (newView: View, animationType: 'slide' | 'none' = 'slide') => {
       let animationName = "";
 
-      if (animationType === "slide") {
+      if (animationType === 'slide') {
         const currentIndex = VIEW_ORDER.indexOf(view);
         const newIndex = VIEW_ORDER.indexOf(newView);
 
@@ -107,6 +110,15 @@ const App: React.FC = () => {
     [navigateTo]
   );
 
+  const handleCharacterSelect = useCallback(
+    (character: Character) => {
+      triggerHapticFeedback();
+      setSelectedCharacter(character);
+      navigateTo("character_detail");
+    },
+    [navigateTo]
+  );
+
   const handleAnimationComplete = useCallback(() => {
     setIsAnimating(false);
     navigateTo("result", "none");
@@ -155,6 +167,24 @@ const App: React.FC = () => {
                   />
                 )
               );
+            case "gallery":
+              return (
+                <CharacterGallery
+                  history={history}
+                  onSelectCharacter={handleCharacterSelect}
+                  onBack={() => navigateTo("home")}
+                />
+              );
+            case "character_detail":
+               return (
+                  selectedCharacter && (
+                    <CharacterDetail
+                      character={selectedCharacter}
+                      history={history}
+                      onBack={() => navigateTo("gallery")}
+                    />
+                  )
+               );
             case "home":
             default:
               return (
@@ -198,9 +228,15 @@ const App: React.FC = () => {
   };
 
   const MemoizedHistoryIcon = useMemo(
-    () => <HistoryIcon className="w-7 h-7" />,
+    () => <HistoryIcon className="w-6 h-6" />,
     []
   );
+
+  const MemoizedUsersIcon = useMemo(
+    () => <UsersIcon className="w-6 h-6" />,
+    []
+  );
+  
   const showFooter = view === "home" && !isAnimating;
 
   return (
@@ -208,17 +244,28 @@ const App: React.FC = () => {
       <div className="flex-grow overflow-auto">{renderContent()}</div>
 
       {showFooter && (
-        <footer className="w-full p-4 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 flex justify-center items-center sticky bottom-0 z-10">
+        <footer className="w-full p-4 bg-gray-900/80 backdrop-blur-sm border-t border-gray-700 flex justify-center items-center gap-4 sticky bottom-0 z-10">
           <button
             onClick={() => {
               triggerHapticFeedback();
               navigateTo("history");
             }}
             disabled={history.length === 0}
-            className="flex items-center gap-2 px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed transition-colors duration-200"
+            className="flex-1 flex justify-center items-center gap-2 px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed transition-colors duration-200"
           >
             {MemoizedHistoryIcon}
-            View History ({history.length})
+            Riwayat
+          </button>
+          
+          <button
+            onClick={() => {
+              triggerHapticFeedback();
+              navigateTo("gallery");
+            }}
+            className="flex-1 flex justify-center items-center gap-2 px-4 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-colors duration-200"
+          >
+            {MemoizedUsersIcon}
+            Karakter
           </button>
         </footer>
       )}
