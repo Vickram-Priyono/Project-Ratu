@@ -189,14 +189,14 @@ const App: React.FC = () => {
             default:
               return (
                 <div className="flex flex-col items-center justify-center h-full text-center p-8">
-                  <div className="mb-8">
+                  <div className="mb-8 drop-shadow-xl bg-gray-900/30 backdrop-blur-sm p-6 rounded-2xl border border-gray-700/50">
                     <h1
-                      className="text-4xl md:text-5xl font-bold text-amber-300 tracking-wider"
-                      style={{ fontFamily: "monospace" }}
+                      className="text-4xl md:text-5xl font-bold text-amber-300 tracking-wider mb-2"
+                      style={{ fontFamily: "monospace", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
                     >
                       Detectified
                     </h1>
-                    <p className="text-gray-400 mt-2">
+                    <p className="text-gray-200 mt-2 font-medium" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
                       Pindai QR code pada kartu untuk mendapatkan alibi atau
                       bukti.
                     </p>
