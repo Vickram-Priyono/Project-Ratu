@@ -12,6 +12,7 @@ export interface GameDataItem {
   icon: React.ComponentType<{ className?: string }>;
   characterId?: string; // References a character
   isAlibi?: boolean; // Indicates if this item is an alibi
+  audioUrl?: string; // Optional audio URL for the item (e.g. for Alibis)
 }
 
 export interface Character {

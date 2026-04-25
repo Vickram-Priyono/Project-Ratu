@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { HistoryItem } from '../types';
-import { ChevronLeftIcon } from './icons/StaticIcons';
+import { ChevronLeftIcon, PlayIcon, PauseIcon } from './icons/StaticIcons';
 
 interface ResultDisplayProps {
   item: HistoryItem;
@@ -9,11 +9,37 @@ interface ResultDisplayProps {
 
 const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack }) => {
   const [imageError, setImageError] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Reset image error state when the item changes
   useEffect(() => {
     setImageError(false);
   }, [item.imageUrl]);
+
+  useEffect(() => {
+    if (item.audioUrl) {
+      audioRef.current = new Audio(item.audioUrl);
+      audioRef.current.onended = () => setIsPlaying(false);
+    }
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, [item.audioUrl]);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().catch((e) => console.error("Error playing audio", e));
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <div className="w-full h-full bg-transparent flex flex-col animate-fade-in">
@@ -52,8 +78,29 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack }) => {
                 <item.icon className="w-8 h-8 text-amber-400" />
               </div>
               <div className="flex-grow">
-                <h1 className="text-2xl font-bold text-white">{item.title}</h1>
-                <p className="text-md text-gray-400">{item.subtitle}</p>
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <h1 className="text-2xl font-bold text-white">{item.title}</h1>
+                    <p className="text-md text-gray-400">{item.subtitle}</p>
+                  </div>
+                  {item.audioUrl && (
+                    <button
+                      onClick={togglePlay}
+                      className={`flex-shrink-0 flex items-center justify-center p-3 rounded-full transition-all duration-300 ${
+                        isPlaying 
+                          ? "bg-amber-400 text-gray-900 shadow-[0_0_15px_rgba(251,191,36,0.4)]" 
+                          : "bg-gray-700 hover:bg-gray-600 text-amber-400"
+                      }`}
+                      aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
+                    >
+                      {isPlaying ? (
+                        <PauseIcon className="w-6 h-6" />
+                      ) : (
+                        <PlayIcon className="w-6 h-6 ml-0.5" />
+                      )}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <hr className="border-gray-600 my-4" />

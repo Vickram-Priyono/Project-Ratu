@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import type { HistoryItem, Character } from "../types";
-import { ChevronLeftIcon, LockIcon } from "./icons/StaticIcons";
+import { ChevronLeftIcon, LockIcon, PlayIcon, PauseIcon } from "./icons/StaticIcons";
 
 interface CharacterDetailProps {
   character: Character;
@@ -14,6 +14,8 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
   onBack,
 }) => {
   const [activeTab, setActiveTab] = useState<"biodata" | "alibi">("biodata");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Find all items related to this character
   const characterItems = history.filter(
@@ -22,6 +24,38 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
 
   // Find alibi item
   const alibiItem = characterItems.find((item) => item.isAlibi);
+
+  useEffect(() => {
+    if (alibiItem?.audioUrl) {
+      audioRef.current = new Audio(alibiItem.audioUrl);
+      audioRef.current.onended = () => setIsPlaying(false);
+    }
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, [alibiItem]);
+
+  // Pause audio when switching tabs
+  useEffect(() => {
+    if (activeTab !== "alibi" && isPlaying && audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [activeTab, isPlaying]);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().catch((e) => console.error("Error playing audio", e));
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <div className="h-full flex flex-col md:max-w-2xl md:mx-auto bg-transparent shadow-2xl">
@@ -123,7 +157,7 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
                         <div className="p-2 bg-amber-400/10 rounded-lg">
                           <alibiItem.icon className="w-6 h-6 text-amber-400" />
                         </div>
-                        <div>
+                        <div className="flex-grow">
                           <h3 className="font-semibold text-white">
                             Pernyataan Alibi
                           </h3>
@@ -131,6 +165,23 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
                             Diperoleh dari {alibiItem.title}
                           </p>
                         </div>
+                        {alibiItem.audioUrl && (
+                          <button
+                            onClick={togglePlay}
+                            className={`flex items-center justify-center p-3 rounded-full transition-all duration-300 ${
+                              isPlaying 
+                                ? "bg-amber-400 text-gray-900 shadow-[0_0_15px_rgba(251,191,36,0.4)]" 
+                                : "bg-gray-700 hover:bg-gray-600 text-amber-400"
+                            }`}
+                            aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
+                          >
+                            {isPlaying ? (
+                              <PauseIcon className="w-6 h-6" />
+                            ) : (
+                              <PlayIcon className="w-6 h-6 ml-0.5" />
+                            )}
+                          </button>
+                        )}
                       </div>
                       <div className="prose prose-invert max-w-none text-gray-300">
                         {alibiItem.content.split('\n').map((paragraph, idx) => (

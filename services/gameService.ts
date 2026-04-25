@@ -64,6 +64,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "mahesa",
     isAlibi: true,
+    audioUrl: "/audio/mahesa.mp3",
   },
   ARIEF_M: {
     type: "Tukang Rumput",
@@ -75,6 +76,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "arief",
     isAlibi: true,
+    audioUrl: "/audio/arief.mp3",
   },
   ARIEF_M_2: {
     type: "Tetangga",
@@ -95,6 +97,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "dimas",
     isAlibi: true,
+    audioUrl: "/audio/dimas.mp3",
   },
   Larasati: {
     type: "Saksi",
@@ -105,6 +108,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "larasati",
     isAlibi: true,
+    audioUrl: "/audio/larasati.mp3",
   },
   Ibu_Lastri: {
     type: "Saksi",
@@ -115,6 +119,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "lastri",
     isAlibi: true,
+    audioUrl: "/audio/lastri.mp3",
   },
   Risa: {
     type: "Saksi",
@@ -125,6 +130,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "risa",
     isAlibi: true,
+    audioUrl: "/audio/risa.mp3",
   },
   CCTV: {
     type: "Bukti",
