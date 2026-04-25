@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // This is a global variable from the script loaded in index.html
 // We provide a minimal type definition to avoid using `any`.
@@ -37,6 +37,7 @@ interface ScannerProps {
 }
 
 const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
+  const [isExiting, setIsExiting] = useState(false);
   // Use a ref for the scanner instance to ensure it's stable across renders
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
   const elementId = "qr-reader";
@@ -103,8 +104,15 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
     // Dependencies for the useEffect hook
   }, [onSuccess, onError]);
 
+  const handleCancel = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onCancel();
+    }, 300); // Wait for animation to complete
+  };
+
   return (
-    <div className="fixed inset-0 bg-black z-40 flex flex-col">
+    <div className={`fixed inset-0 bg-black z-40 flex flex-col ${isExiting ? 'animate-slide-out-to-bottom' : 'animate-slide-in-from-bottom'}`}>
       <div id={elementId} className="w-full flex-grow"></div>
        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-[250px] h-[250px]">
@@ -120,7 +128,7 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
       </div>
       <div className="w-full p-4 bg-gray-900/80 backdrop-blur-sm flex justify-center sticky bottom-0">
         <button
-          onClick={onCancel}
+          onClick={handleCancel}
           className="px-8 py-3 bg-red-700 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200"
         >
           Cancel

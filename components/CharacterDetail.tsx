@@ -24,7 +24,7 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
   const alibiItem = characterItems.find((item) => item.isAlibi);
 
   return (
-    <div className="h-full flex flex-col md:max-w-2xl md:mx-auto bg-gray-900 shadow-2xl">
+    <div className="h-full flex flex-col md:max-w-2xl md:mx-auto bg-transparent shadow-2xl">
       <header className="sticky top-0 bg-gray-900/95 backdrop-blur-sm z-10 px-4 py-4 border-b border-gray-800 flex items-center shadow-md">
         <button
           onClick={onBack}
@@ -41,7 +41,7 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
       <div className="flex-1 overflow-y-auto">
         <div className="p-6 pb-8">
           <div className="flex flex-col items-center">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-800 overflow-hidden shadow-xl mb-4 bg-gray-800 relative">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-800/80 overflow-hidden shadow-xl mb-4 bg-gray-800/80 relative">
               <img
                 src={character.imageUrl}
                 alt={character.name}
@@ -54,7 +54,7 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
             <p className="text-amber-400 font-medium mb-6">{character.role}</p>
 
             {/* Tabs */}
-            <div className="w-full flex bg-gray-800 rounded-lg p-1 mb-6">
+            <div className="w-full flex bg-gray-800/80 backdrop-blur-sm rounded-lg p-1 mb-6">
               <button
                 onClick={() => setActiveTab("biodata")}
                 className={`flex-1 py-2 text-sm font-semibold rounded-md transition-colors ${

@@ -20,7 +20,7 @@ const CharacterGallery: React.FC<CharacterGalleryProps> = ({
   );
 
   return (
-    <div className="h-full flex flex-col md:max-w-2xl md:mx-auto bg-gray-900 shadow-2xl">
+    <div className="h-full flex flex-col md:max-w-2xl md:mx-auto bg-transparent shadow-2xl">
       <header className="sticky top-0 bg-gray-900/95 backdrop-blur-sm z-10 px-4 py-4 border-b border-gray-800 flex items-center shadow-md">
         <button
           onClick={onBack}
@@ -54,7 +54,7 @@ const CharacterGallery: React.FC<CharacterGalleryProps> = ({
                 }`}
               >
                 {/* Image */}
-                <div className="absolute inset-0 bg-gray-800">
+                <div className="absolute inset-0 bg-gray-800/80 backdrop-blur-sm">
                   <img
                     src={char.imageUrl}
                     alt={char.name}

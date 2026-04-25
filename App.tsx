@@ -212,7 +212,7 @@ const App: React.FC = () => {
                     }}
                     aria-label="Scan for a new clue"
                   >
-                    <div className="flex items-center justify-center w-48 h-48 bg-gray-800 rounded-full border-4 border-amber-400/50 group-hover:border-amber-400/100 shadow-lg group-hover:shadow-amber-400/20 transition-all duration-300 transform group-hover:scale-105 animate-pulse-glow">
+                    <div className="flex items-center justify-center w-48 h-48 bg-gray-800/80 backdrop-blur-sm rounded-full border-4 border-amber-400/50 group-hover:border-amber-400/100 shadow-lg group-hover:shadow-amber-400/20 transition-all duration-300 transform group-hover:scale-105 animate-pulse-glow">
                       <CameraIcon className="w-20 h-20 text-gray-400 group-hover:text-amber-300 transition-colors duration-300" />
                     </div>
                     <p className="mt-4 text-lg font-semibold text-gray-300 group-hover:text-amber-300 transition-colors duration-300">
@@ -240,7 +240,7 @@ const App: React.FC = () => {
   const showFooter = view === "home" && !isAnimating;
 
   return (
-    <main className="w-full h-full bg-gray-900 text-white flex flex-col overflow-hidden relative font-sans">
+    <main className="w-full h-full bg-transparent text-white flex flex-col overflow-hidden relative font-sans">
       <div className="flex-grow overflow-auto">{renderContent()}</div>
 
       {showFooter && (
