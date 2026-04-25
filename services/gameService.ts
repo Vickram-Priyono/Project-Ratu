@@ -76,7 +76,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     icon: WitnessIcon,
     characterId: "arief",
     isAlibi: true,
-    audioUrl: "/audio/arief.mp3",
+    audioUrl: "/audio/voibu.mp3",
   },
   ARIEF_M_2: {
     type: "Tetangga",
