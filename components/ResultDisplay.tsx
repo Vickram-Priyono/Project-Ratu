@@ -42,69 +42,71 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack }) => {
   };
 
   return (
-    <div className="w-full h-full bg-transparent flex flex-col animate-fade-in">
-      <header className="p-4 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 flex items-center sticky top-0 z-10">
-        <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-700 transition-colors">
-          <ChevronLeftIcon className="w-6 h-6 text-white" />
-        </button>
-        <h2 className="text-xl font-bold text-white ml-4">Scan Result</h2>
-      </header>
+    <div className="w-full h-full bg-transparent flex flex-col animate-fade-in relative">
+      <button 
+        onClick={onBack} 
+        className="absolute top-4 left-4 p-2 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur border border-white/10 z-20 transition-colors"
+        aria-label="Go back"
+      >
+        <ChevronLeftIcon className="w-6 h-6 text-white" />
+      </button>
 
-      {/* // FIX: Display all item details, not just the image, and make content scrollable. */}
-      <div className="flex-grow overflow-y-auto p-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-4 bg-gray-900/60 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg">
+      <div className="flex-grow overflow-y-auto p-4 pt-16">
+        <div className="max-w-xl mx-auto flex flex-col gap-6">
+          <div className="w-full bg-black rounded-sm shadow-[0_4px_16px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-black relative">
             {!imageError ? (
               <img
                 src={item.imageUrl}
                 alt={item.title}
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover border border-white/10"
+                style={{ aspectRatio: '1/1' }}
                 onError={() => setImageError(true)}
               />
             ) : (
-              <div className="w-full aspect-video bg-gray-700/50 rounded-lg flex flex-col items-center justify-center text-center p-4 border border-red-500/30">
+              <div className="w-full aspect-square bg-gray-800 flex flex-col items-center justify-center text-center p-4 border border-red-500/30">
                 <p className="font-semibold text-red-400">Image Not Found</p>
                 <p className="text-xs text-gray-400 mt-2">
                   Could not load image from:
                 </p>
-                <code className="text-xs bg-gray-800 p-1 rounded mt-1 break-all">{item.imageUrl}</code>
+                <code className="text-xs bg-gray-900 p-1 rounded mt-1 break-all text-left">{item.imageUrl}</code>
               </div>
             )}
           </div>
 
-          <div className="bg-gray-900/50 p-4 sm:p-6 rounded-lg">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-gray-700 rounded-md mt-1 flex-shrink-0">
-                <item.icon className="w-8 h-8 text-amber-400" />
+          <div className="bg-slate-700/80 backdrop-blur-md p-5 rounded-2xl border border-slate-600 shadow-2xl">
+            <div className="flex items-center gap-4 mb-5">
+              <div className="p-3 bg-slate-800 rounded-xl flex-shrink-0 border border-slate-700/50 shadow-inner">
+                <item.icon className="w-7 h-7 text-amber-400" />
               </div>
-              <div className="flex-grow">
-                <div className="flex justify-between items-start gap-4">
-                  <div>
-                    <h1 className="text-2xl font-bold text-white">{item.title}</h1>
-                    <p className="text-md text-gray-400">{item.subtitle}</p>
-                  </div>
-                  {item.audioUrl && (
-                    <button
-                      onClick={togglePlay}
-                      className={`flex-shrink-0 flex items-center justify-center p-3 rounded-full transition-all duration-300 ${
-                        isPlaying 
-                          ? "bg-amber-400 text-gray-900 shadow-[0_0_15px_rgba(251,191,36,0.4)]" 
-                          : "bg-gray-700 hover:bg-gray-600 text-amber-400"
-                      }`}
-                      aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
-                    >
-                      {isPlaying ? (
-                        <PauseIcon className="w-6 h-6" />
-                      ) : (
-                        <PlayIcon className="w-6 h-6 ml-0.5" />
-                      )}
-                    </button>
-                  )}
+              <div className="flex-grow flex justify-between items-center gap-2">
+                <div>
+                  <h1 className="text-2xl font-bold text-white tracking-wide">{item.title}</h1>
+                  <p className="text-sm font-medium text-slate-300">{item.subtitle}</p>
                 </div>
+                {item.audioUrl && (
+                  <button
+                    onClick={togglePlay}
+                    className={`flex-shrink-0 flex items-center justify-center p-2.5 rounded-full border-2 transition-all duration-300 ${
+                      isPlaying 
+                        ? "border-amber-400 text-amber-400 bg-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.3)]" 
+                        : "border-amber-500/80 text-amber-500 hover:bg-amber-500/10 hover:border-amber-400 hover:text-amber-400"
+                    }`}
+                    aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
+                  >
+                    {isPlaying ? (
+                      <PauseIcon className="w-5 h-5" />
+                    ) : (
+                      <PlayIcon className="w-5 h-5 ml-0.5" />
+                    )}
+                  </button>
+                )}
               </div>
             </div>
-            <hr className="border-gray-600 my-4" />
-            <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">{item.content}</p>
+            <div className="space-y-4 text-slate-200">
+              {item.content.split('\n').map((paragraph, index) => (
+                <p key={index} className="leading-relaxed whitespace-pre-wrap">{paragraph}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
