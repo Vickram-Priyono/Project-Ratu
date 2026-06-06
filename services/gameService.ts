@@ -154,7 +154,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     imageUrl: "/luthfi.png",
     content: "Malam Kamis hingga Jumat dini hari... benar, kami memang berada di tempat kejadian sekitar pukul 01.00 WIB. Situasi sekitar saat itu sepi sekali, makanya saya dan Bara memutuskan melakukan tagging disitu. Kami tagging sampai dengan pukul 03.00 WIB..? Kalau tidak salah jam segitu kami memutuskan untuk berhenti. Mohon maaf Detektif, tapi saya lupa banyak detail tentang malam itu karena efek alkohol. Seingat saya, kami fokus mencari tembok kosong untuk melakukan tagging di bawah jembatan di pukul yang saya tuturkan tadi. Jujur, saya sama sekali tidak tahu-menahu soal pembunuhan tersebut.",
     icon: WitnessIcon,
-    characterId: "luthfi",
+    characterId: "adinata",
     isAlibi: false,
   },
   LUTHFI: {
@@ -164,7 +164,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     imageUrl: "/adinata.png",
     content: "Ya, tentu saja saya menyayangkan apa yang menimpa Pak Yong dan Bu Malo. Sangat disayangkan sekali. Mereka berdua adalah pendukung setia saya dan sangat vokal dalam menggalang suara untuk saya. Kamis sore itu sekitar pukul 17.30 WIB Pak Yong dan Bu Malo sempat ke rumah untuk membahas strategi menjelang pemilihan Ketua RT minggu depan, mereka berdua sangat antusias. Setelah itu, semalaman saya sibuk menyusun draf program kerja di ruang kerja saya. Saya tidak punya waktu untuk mengurus hal lain di luar persiapan pemilihan. Bapak tahu sendiri, warga sudah lelah dengan kepemimpinan yang sekarang. Tapi ya, mau bagaimana lagi?",
     icon: WitnessIcon,
-    characterId: "adinata",
+    characterId: "luthfi",
     isAlibi: false,
   },
   DIMAS_PRAKASA_2: {
