@@ -54,7 +54,7 @@ export const charactersData: Character[] = [
     name: "Reivan Pratama",
     role: "Pemilik Toko \"Kings Spray Cans\"",
     description: "Istri dari Arief M.",
-    imageUrl: "/reivan.webp",
+    imageUrl: "/reivann.png",
   },
   
 ];
@@ -100,7 +100,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     type: "Pemilik Toko \"Kings Spray Cans\"",
     title: "Reivan Pratama",
     subtitle: "Pemilik Toko \"Kings Spray Cans\"",
-    imageUrl: "/reivan.webp",
+    imageUrl: "/reivann.png",
     content: "Selamat datang-, oh investigasi mengenai malam Kamis? Sejujurnya, saya tidak terlalu mengikuti gosip di komplek ini. Malam itu saya hanya menjaga toko seperti biasanya. Waktu itu yang datang ke toko juga sedikit; remaja sekolah yang beli untuk merayakan kelulusan, ada juga mahasiswa dengan tampilan gelap dan rambut panjang ombre, ada juga bapak-bapak bertubuh kurus kering yang ingin membeli untuk mengecat furniturnya. Kami sebenarnya memiliki langganan setia toko bernama Bara dan Luthfi, sering kali saya memberikan cans gratis ke mereka. Namun, seingat saya, Bara dan Luthfi tidak kesini malam itu sebab minggu lalu mereka sudah belanja spray cans dengan jumlah yang banyak. ",
     icon: WitnessIcon,
     characterId: "reivan",
