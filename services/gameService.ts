@@ -98,6 +98,13 @@ export const charactersData: Character[] = [
     description: `Bu Damali sering dianggap aneh dan paranoid oleh warga sekitar, bahkan terdapat rumor tentang dirinya yang memiliki gangguan jiwa. Padahal, ia hanyalah sosok dengan ketertarikan pada fenomena yang dianggap mustahil oleh orang awam. Bu Damali memiliki kesulitan berbaur karena cara pandangnya yang unik. Namun, kehadiran suaminya sangat membantu Bu Damali untuk menyampaikan apa yang ia pikirkan.`,
     imageUrl: "/damali.png",
   },
+  {
+    id: "bara",
+    name: `Bara Gumelang`,
+    role: "Seniman Street Art",
+    description: `Bara adalah warga Pelita yang baru saja kembali dari kampung halamannya dan menempati rumah bernomorkan empat puluh dua setelah kepergian Sang Ibu. Bara adalah individu yang terus terang dan mudah emosi, tampilannya nyentrik karena kesukaannya terhadap budaya punk. Perlawanan yang sangat kental pada budaya ini ia tuangkan pada setiap karya sebagai seorang seniman street art.`,
+    imageUrl: "/bara.png",
+  },
 
 ];
 
@@ -146,6 +153,26 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Selamat datang-, oh investigasi mengenai malam Kamis? Sejujurnya, saya tidak terlalu mengikuti gosip di komplek ini. Malam itu saya hanya menjaga toko seperti biasanya. Waktu itu yang datang ke toko juga sedikit; remaja sekolah yang beli untuk merayakan kelulusan, ada juga mahasiswa dengan tampilan gelap dan rambut panjang ombre, ada juga bapak-bapak bertubuh kurus kering yang ingin membeli untuk mengecat furniturnya. Kami sebenarnya memiliki langganan setia toko bernama Bara dan Luthfi, sering kali saya memberikan cans gratis ke mereka. Namun, seingat saya, Bara dan Luthfi tidak kesini malam itu sebab minggu lalu mereka sudah belanja spray cans dengan jumlah yang banyak. ",
     icon: WitnessIcon,
     characterId: "reivan",
+    isAlibi: false,
+  },
+  BARA: {
+    type: "Seniman Street Art",
+    title: "WAWANCARA 1",
+    subtitle: "Seniman Street Art",
+    imageUrl: "/bara.png",
+    content: `Harus banget dijawab ya Pak? Kamis malam, Saya dan Luthfi keluar dari daerah Bendungan Hilir, Tanah Abang untuk mencari lokasi tagging sekitar pukul 00.00 WIB menggunakan mobil lama peninggalan Ibu saya. Kami keliling selama 1 jam untuk mencari lokasi. Sebenarnya ada beberapa spot yang kami lihat asik: Setia Budi, Kebayoran Lama, Kebayoran Baru, dan Palmerah. Tetapi, kami akhirnya memutuskan untuk melakukan tagging di kolong jembatan Kebayoran Baru, itu tempat biasa kami tagging dari sebelum-sebelumnya. Kami memang berada di kolong jembatan itu saat dini hari, tapi tujuannya murni untuk melakukan street art. Mengenai korban, saya tidak kaget dengan apa yang terjadi kepada Pak Yong dan Bu Malo. Ya kasihan sih, tapi mereka berdua ini memang cerewet jadi sudah pasti musuhnya banyak. Sialnya saya dan Luthfi adalah salah satu yang mereka cereweti, tapi tidak mungkinlah kami berani sebegitunya dengan yang sudah tua.`,
+    icon: WitnessIcon,
+    characterId: "bara",
+    isAlibi: true,
+  },
+  BARA2: {
+    type: "Seniman Street Art",
+    title: "WAWANCARA 2",
+    subtitle: "Seniman Street Art",
+    imageUrl: "/bara.png",
+    content: `Kings? Iya, betul itu merek piloks yang biasa saya pakai kalau tagging sama Luthfi. Kami memang pernah tagging di sana, tapi itu sudah seminggu yang lalu—karya yang dibuat juga besar sehingga pilok kami langsung habis saat digunakan di Palmerah dan kaleng-kaleng bekas itu langsung kami buang di tempat sampah terdekat. Sudah ya Detektif, setelah ini saya tidak akan menjawab pertanyaan lagi.`,
+    icon: WitnessIcon,
+    characterId: "bara",
     isAlibi: false,
   },
   RATU: {
