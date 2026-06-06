@@ -84,6 +84,13 @@ export const charactersData: Character[] = [
     description: "Ratu gosip Komplek Pelita yang punya segudang cerita tentang seluruh warga. Ia merasa tahu segalanya, mulai dari sejarah keluarga hingga konflik terbaru di setiap rumah. Hati-hati kalau melihatnya sedang \"santai\" di depan rumah orang, karena kemungkinan besar ia sedang menunggu waktu yang tepat untuk menguping informasi terbaru.",
     imageUrl: "/chantika.png",
   },
+  {
+    id: "ratu",
+    name: "Ratu Ningtyas Sekarya",
+    role: "Ibu Rumah Tangga",
+    description: `Sebagai istri Ketua RT, Ibu Ratu terobsesi pada martabat keluarga hingga sering kali bersikap julid dan sinis terhadap warga yang dianggapnya mengganggu. Ia kerap memuji sosok Abyaz di depan orang lain, meski ia sendiri kecewa dengan perilaku asli anaknya. Hal ini menciptakan konflik antara ibu dan anak di rumah, yang biasanya diredam oleh Pak Rabhya.`,
+    imageUrl: "/ratu.png",
+  },
 
 ];
 
@@ -132,6 +139,16 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Selamat datang-, oh investigasi mengenai malam Kamis? Sejujurnya, saya tidak terlalu mengikuti gosip di komplek ini. Malam itu saya hanya menjaga toko seperti biasanya. Waktu itu yang datang ke toko juga sedikit; remaja sekolah yang beli untuk merayakan kelulusan, ada juga mahasiswa dengan tampilan gelap dan rambut panjang ombre, ada juga bapak-bapak bertubuh kurus kering yang ingin membeli untuk mengecat furniturnya. Kami sebenarnya memiliki langganan setia toko bernama Bara dan Luthfi, sering kali saya memberikan cans gratis ke mereka. Namun, seingat saya, Bara dan Luthfi tidak kesini malam itu sebab minggu lalu mereka sudah belanja spray cans dengan jumlah yang banyak. ",
     icon: WitnessIcon,
     characterId: "reivan",
+    isAlibi: false,
+  },
+  RATU: {
+    type: "Ratu Ningtyas Sekarya",
+    title: "WAWANCARA 1",
+    subtitle: "Ibu Rumah Tangga",
+    imageUrl: "/ratu.png",
+    content: `Aduh Detektif, jujur saja saya sudah tidak tahan lagi melihat kelakuan warga di Blok Pelita ini. Apalagi si Bara dan Luthfi itu. Saya ini istri Ketua RT, martabat keluarga kami itu nomor satu, dan dua orang itu jelas-jelas merusak apa yang suami saya telah pertahankan. Saya sudah berkali-kali melarang Abyaz bergaul dengan mereka karena mereka ini pengaruh buruk! Abyaz anak saya? Oh, dia anak yang baik. Biarpun penampilannya... yah, Detektif lihat sendiri lah, itu cuma fase sementara mahasiswa. Terkait kedatangan Pak Yong dan Bu Malo, saya tidak melihat mereka karena sedang arisan di rumah teman. Saya baru pulang pukul 21.00 WIB dan langsung tidur karena kelelahan. Kalau saja saya tahu mereka datang hanya untuk memarahi suami saya, saya pasti akan pasang badan.`,
+    icon: WitnessIcon,
+    characterId: "ratu",
     isAlibi: false,
   },
   RABHYA: {
