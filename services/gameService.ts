@@ -57,7 +57,7 @@ export const charactersData: Character[] = [
     imageUrl: "/reivann.png",
   },
   {
-    id: "rabya",
+    id: "rabhya",
     name: "Rabhya Wibowo",
     role: "Tukang Furnitur Paruh Waktu",
     description: "Pak Rabhya adalah tokoh masyarakat di Komplek Pelita yang telah menjabat sebagai Ketua RT selama tiga periode. Karir kepemimpinannya dimulai saat ia masih aktif di militer. Pada usianya yang ke-43 tahun, Pak Rabhya terpaksa diberhentikan sebab luka serius yang dialaminya saat bertugas. Pak Rabhya adalah individu yang rela berkorban dan selalu memastikan dirinya dapat berdampak ke lingkungan. Dirinya beranggapan bahwa ia selalu tahu apa yang terbaik bagi orang-orang sebab kepemimpinannya yang selalu disanjung selama ini.",
