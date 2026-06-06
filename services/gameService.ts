@@ -91,6 +91,13 @@ export const charactersData: Character[] = [
     description: `Sebagai istri Ketua RT, Ibu Ratu terobsesi pada martabat keluarga hingga sering kali bersikap julid dan sinis terhadap warga yang dianggapnya mengganggu. Ia kerap memuji sosok Abyaz di depan orang lain, meski ia sendiri kecewa dengan perilaku asli anaknya. Hal ini menciptakan konflik antara ibu dan anak di rumah, yang biasanya diredam oleh Pak Rabhya.`,
     imageUrl: "/ratu.png",
   },
+  {
+    id: "damali",
+    name: `Damali Nasya`,
+    role: "Ibu Rumah Tangga",
+    description: `Bu Damali sering dianggap aneh dan paranoid oleh warga sekitar, bahkan terdapat rumor tentang dirinya yang memiliki gangguan jiwa. Padahal, ia hanyalah sosok dengan ketertarikan pada fenomena yang dianggap mustahil oleh orang awam. Bu Damali memiliki kesulitan berbaur karena cara pandangnya yang unik. Namun, kehadiran suaminya sangat membantu Bu Damali untuk menyampaikan apa yang ia pikirkan.`,
+    imageUrl: "/damali.png",
+  },
 
 ];
 
@@ -149,6 +156,19 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: `Aduh Detektif, jujur saja saya sudah tidak tahan lagi melihat kelakuan warga di Blok Pelita ini. Apalagi si Bara dan Luthfi itu. Saya ini istri Ketua RT, martabat keluarga kami itu nomor satu, dan dua orang itu jelas-jelas merusak apa yang suami saya telah pertahankan. Saya sudah berkali-kali melarang Abyaz bergaul dengan mereka karena mereka ini pengaruh buruk! Abyaz anak saya? Oh, dia anak yang baik. Biarpun penampilannya... yah, Detektif lihat sendiri lah, itu cuma fase sementara mahasiswa. Terkait kedatangan Pak Yong dan Bu Malo, saya tidak melihat mereka karena sedang arisan di rumah teman. Saya baru pulang pukul 21.00 WIB dan langsung tidur karena kelelahan. Kalau saja saya tahu mereka datang hanya untuk memarahi suami saya, saya pasti akan pasang badan.`,
     icon: WitnessIcon,
     characterId: "ratu",
+    isAlibi: false,
+  },
+  DAMALI: {
+    type: `Damali Nasya`,
+    title: "WAWANCARA 1",
+    subtitle: "Ibu Rumah Tangga",
+    imageUrl: "/damali.png",
+    content: `Malam waktu suami saya keluar menemui Pak RT, saya sudah merasa ada yang tidak beres. Ada aura merah pekat terpancar dari arah rumah Pak Rabhya, dan saya tidak asal bicara ya! Insting saya ini kuat.
+Saya curiga sekali dengan Abyaz, anak Pak Rabhya itu... Jangan-jangan dia sakit hati karena ayahnya mau dilengserkan warga, termasuk oleh suami saya. Namanya saja hampir mirip, Rabhya dan Abyaz, pasti sifat juga tidak jauh berbeda!
+Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yang masuk sekaligus menunggu kepulangan suami saya. Saya sampai tidak berani menyalakan lampu. Sesekali saya mengintip dari balik gorden jendela depan. Nah, saat jam menunjukkan pukul 00.05 WIB, saya sempat mendengar ada dua kendaraan lewat dengan jarak waktu yang tidak jauh berbeda. Awalnya saya kira itu suami saya, tapi saya baru ingat kalau dia pergi tidak membawa mobil. Kalau saja saya keluar malam itu, mungkin saya juga dibunuh.
+`,
+    icon: WitnessIcon,
+    characterId: "damali",
     isAlibi: false,
   },
   RABHYA: {
