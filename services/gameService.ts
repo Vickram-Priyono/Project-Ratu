@@ -70,6 +70,13 @@ export const charactersData: Character[] = [
     description: "Pak Adinata adalah warga pelita yang dikenal dengan kepercayaan dirinya yang tinggi. Selain itu, Pak Adinata juga memiliki kharisma yang bisa membuat semua percaya padanya. Alasan inilah yang akhirnya mendorong beberapa warga untuk mendukung Pak Adinata sebagai Ketua RT yang baru.",
     imageUrl: "/adinata.png",
   },
+  {
+    id: "luthfi",
+    name: "Cahaya Luthfi Darmawan",
+    role: "Seniman Street Art",
+    description: "Luthfi adalah penghuni baru di Komplek Pelita. Ia menempati kediamannya sekarang setelah menerima ajakan dari kawan masa kecilnya, Bara. Berbeda dengan teman sekamarnya, Luthfi memiliki kepribadian yang pendiam, pemalu, dan tutur kata yang halus. Meski secara usia lebih tua, ia sudah terbiasa mengikuti arahan Bara dalam segala hal.",
+    imageUrl: "/luthfi.png",
+  },
 
 ];
 
@@ -142,6 +149,16 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
   },
   ADINATA: {
     type: "Adinata Agung",
+    title: "WAWANCARA 1",
+    subtitle: "Pebisnis",
+    imageUrl: "/luthfi.png",
+    content: "Malam Kamis hingga Jumat dini hari... benar, kami memang berada di tempat kejadian sekitar pukul 01.00 WIB. Situasi sekitar saat itu sepi sekali, makanya saya dan Bara memutuskan melakukan tagging disitu. Kami tagging sampai dengan pukul 03.00 WIB..? Kalau tidak salah jam segitu kami memutuskan untuk berhenti. Mohon maaf Detektif, tapi saya lupa banyak detail tentang malam itu karena efek alkohol. Seingat saya, kami fokus mencari tembok kosong untuk melakukan tagging di bawah jembatan di pukul yang saya tuturkan tadi. Jujur, saya sama sekali tidak tahu-menahu soal pembunuhan tersebut.",
+    icon: WitnessIcon,
+    characterId: "luthfi",
+    isAlibi: false,
+  },
+  LUTHFI: {
+    type: "Cahaya Luthfi Darmawan",
     title: "WAWANCARA 1",
     subtitle: "Pebisnis",
     imageUrl: "/adinata.png",
