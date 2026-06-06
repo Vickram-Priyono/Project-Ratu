@@ -63,7 +63,14 @@ export const charactersData: Character[] = [
     description: "Pak Rabhya adalah tokoh masyarakat di Komplek Pelita yang telah menjabat sebagai Ketua RT selama tiga periode. Karir kepemimpinannya dimulai saat ia masih aktif di militer. Pada usianya yang ke-43 tahun, Pak Rabhya terpaksa diberhentikan sebab luka serius yang dialaminya saat bertugas. Pak Rabhya adalah individu yang rela berkorban dan selalu memastikan dirinya dapat berdampak ke lingkungan. Dirinya beranggapan bahwa ia selalu tahu apa yang terbaik bagi orang-orang sebab kepemimpinannya yang selalu disanjung selama ini.",
     imageUrl: "/rabhya.png",
   },
-  
+  {
+    id: "adinata",
+    name: "Adinata Agung",
+    role: "Pebisnis",
+    description: "Pak Adinata adalah warga pelita yang dikenal dengan kepercayaan dirinya yang tinggi. Selain itu, Pak Adinata juga memiliki kharisma yang bisa membuat semua percaya padanya. Alasan inilah yang akhirnya mendorong beberapa warga untuk mendukung Pak Adinata sebagai Ketua RT yang baru.",
+    imageUrl: "/adinata.png",
+  },
+
 ];
 
 // This acts as a database of all scannable items in the game.
@@ -131,6 +138,16 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Oh iya mengenai mobil yang di depan rumah kosong itu ya? Ha-ha- Saya lupa mobil itu disitu.. Sengaja saya letakkan sebab Andos biasanya pinjam jika ada kebutuhan mengenai kegiatan di TPS. Saya sangat mendukung Andos sepenuhnya sebagai ketua pengelola TPS di perumahan kami. Visi misi kami nyambung makanya saya selalu memastikan dapat memfasilitasi dengan sebaik-baiknya.",
     icon: WitnessIcon,
     characterId: "rabhya",
+    isAlibi: false,
+  },
+  ADINATA: {
+    type: "Adinata Agung",
+    title: "WAWANCARA 1",
+    subtitle: "Pebisnis",
+    imageUrl: "/adinata.png",
+    content: "Ya, tentu saja saya menyayangkan apa yang menimpa Pak Yong dan Bu Malo. Sangat disayangkan sekali. Mereka berdua adalah pendukung setia saya dan sangat vokal dalam menggalang suara untuk saya. Kamis sore itu sekitar pukul 17.30 WIB Pak Yong dan Bu Malo sempat ke rumah untuk membahas strategi menjelang pemilihan Ketua RT minggu depan, mereka berdua sangat antusias. Setelah itu, semalaman saya sibuk menyusun draf program kerja di ruang kerja saya. Saya tidak punya waktu untuk mengurus hal lain di luar persiapan pemilihan. Bapak tahu sendiri, warga sudah lelah dengan kepemimpinan yang sekarang. Tapi ya, mau bagaimana lagi?",
+    icon: WitnessIcon,
+    characterId: "adinata",
     isAlibi: false,
   },
   DIMAS_PRAKASA_2: {
