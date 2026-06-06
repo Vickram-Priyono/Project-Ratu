@@ -77,6 +77,13 @@ export const charactersData: Character[] = [
     description: "Luthfi adalah penghuni baru di Komplek Pelita. Ia menempati kediamannya sekarang setelah menerima ajakan dari kawan masa kecilnya, Bara. Berbeda dengan teman sekamarnya, Luthfi memiliki kepribadian yang pendiam, pemalu, dan tutur kata yang halus. Meski secara usia lebih tua, ia sudah terbiasa mengikuti arahan Bara dalam segala hal.",
     imageUrl: "/luthfi.png",
   },
+  {
+    id: "chantika",
+    name: "Angelina Chantika",
+    role: "Ibu Rumah Tangga",
+    description: "Ratu gosip Komplek Pelita yang punya segudang cerita tentang seluruh warga. Ia merasa tahu segalanya, mulai dari sejarah keluarga hingga konflik terbaru di setiap rumah. Hati-hati kalau melihatnya sedang "santai" di depan rumah orang, karena kemungkinan besar ia sedang menunggu waktu yang tepat untuk menguping informasi terbaru.",
+    imageUrl: "/chantika.png",
+  },
 
 ];
 
@@ -165,6 +172,17 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Ya, tentu saja saya menyayangkan apa yang menimpa Pak Yong dan Bu Malo. Sangat disayangkan sekali. Mereka berdua adalah pendukung setia saya dan sangat vokal dalam menggalang suara untuk saya. Kamis sore itu sekitar pukul 17.30 WIB Pak Yong dan Bu Malo sempat ke rumah untuk membahas strategi menjelang pemilihan Ketua RT minggu depan, mereka berdua sangat antusias. Setelah itu, semalaman saya sibuk menyusun draf program kerja di ruang kerja saya. Saya tidak punya waktu untuk mengurus hal lain di luar persiapan pemilihan. Bapak tahu sendiri, warga sudah lelah dengan kepemimpinan yang sekarang. Tapi ya, mau bagaimana lagi?",
     icon: WitnessIcon,
     characterId: "luthfi",
+    isAlibi: false,
+  },
+  CHANTIKA: {
+    type: "Angelina Chantika",
+    title: "WAWANCARA 1",
+    subtitle: "Ibu Rumah Tangga",
+    imageUrl: "/chantika.png",
+    content: "Hmm, malam kejadian ya? Aduh Detektif, komplek ini tuh emang lagi panas-panasnya! Gosip yang paling kencang ya perselisihan Pak Yong dan Bu Malo sama anak-anak punk itu, si Bara dan Luthfi, soal isu obat-obatan. Nah, malam Kamis itu saya lihat sendiri Pak Yong sama Bu Malo datang ke rumah Pak Rabhya buat bahas mereka. Karena penasaran, saya sempatkan berhenti sebentar di depan pagar Pak RT buat menguping. Awalnya biasa saja, tapi lama-lama suaranya meninggi, kedengarannya argumen mereka memanas sekali. Karena saya merasa sudah dapat 'inti' gosipnya, sekitar pukul 19.45 WIB saya memutuskan pulang. Jadi saya nggak tahu deh tuh mereka keluar dari sana jam berapa, yang jelas pas saya tinggal sih mereka masih ribut di dalam.
+Oh iya, ini mengingatkan saya soal satu hal lagi. Ada isu soal upaya pelengseran Pak Rabhya dari kursi Ketua RT. Penggeraknya itu lima orang: Pak Esman, Bu Tia, Pak Sodikin, Pak Yong, dan Bu Malo. Tapi anehnya, tiga orang pertama itu sekarang mendadak nggak tahu rimbanya ke mana. Sekarang tinggal Pak Yong sama Bu Malo yang paling vokal, apalagi minggu depan sudah mau pemilihan lagi dan Pak Rabhya memajukan dirinya kembali. Bagi saya sih Pak Rabhya orangnya baik-baik saja, cuma lima orang itu saja yang sepertinya punya dendam pribadi.",
+    icon: WitnessIcon,
+    characterId: "chantika",
     isAlibi: false,
   },
   DIMAS_PRAKASA_2: {
