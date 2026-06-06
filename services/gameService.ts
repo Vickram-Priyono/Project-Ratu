@@ -96,7 +96,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     characterId: "arief",
     isAlibi: false,
   },
-  REIVAN : {
+  REIVAN: {
     type: "Pemilik Toko \"Kings Spray Cans\"",
     title: "Reivan Pratama",
     subtitle: "Pemilik Toko \"Kings Spray Cans\"",
