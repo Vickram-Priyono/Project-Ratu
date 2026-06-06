@@ -81,7 +81,7 @@ export const charactersData: Character[] = [
     id: "chantika",
     name: "Angelina Chantika",
     role: "Ibu Rumah Tangga",
-    description: "Ratu gosip Komplek Pelita yang punya segudang cerita tentang seluruh warga. Ia merasa tahu segalanya, mulai dari sejarah keluarga hingga konflik terbaru di setiap rumah. Hati-hati kalau melihatnya sedang "santai" di depan rumah orang, karena kemungkinan besar ia sedang menunggu waktu yang tepat untuk menguping informasi terbaru.",
+    description: "Ratu gosip Komplek Pelita yang punya segudang cerita tentang seluruh warga. Ia merasa tahu segalanya, mulai dari sejarah keluarga hingga konflik terbaru di setiap rumah. Hati-hati kalau melihatnya sedang \"santai\" di depan rumah orang, karena kemungkinan besar ia sedang menunggu waktu yang tepat untuk menguping informasi terbaru.",
     imageUrl: "/chantika.png",
   },
 
