@@ -53,8 +53,15 @@ export const charactersData: Character[] = [
     id: "reivan",
     name: "Reivan Pratama",
     role: "Pemilik Toko \"Kings Spray Cans\"",
-    description: "Istri dari Arief M.",
+    description: "Berawal dari kecintaannya pada street art, Reivan akhirnya berhasil mengembangkan merek cat semprot (pilox) miliknya sendiri. Toko pertamanya, \"Kings Spray Cans\", resmi didirikan lima tahun lalu dengan memanfaatkan kediaman pribadinya sebagai toko.",
     imageUrl: "/reivann.png",
+  },
+    {
+    id: "rabya",
+    name: "Rabhya Wibowo",
+    role: "Tukang Furnitur Paruh Waktu",
+    description: "Pak Rabhya adalah tokoh masyarakat di Komplek Pelita yang telah menjabat sebagai Ketua RT selama tiga periode. Karir kepemimpinannya dimulai saat ia masih aktif di militer. Pada usianya yang ke-43 tahun, Pak Rabhya terpaksa diberhentikan sebab luka serius yang dialaminya saat bertugas. Pak Rabhya adalah individu yang rela berkorban dan selalu memastikan dirinya dapat berdampak ke lingkungan. Dirinya beranggapan bahwa ia selalu tahu apa yang terbaik bagi orang-orang sebab kepemimpinannya yang selalu disanjung selama ini.",
+    imageUrl: "/rabhya.png",
   },
   
 ];
@@ -104,6 +111,26 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Selamat datang-, oh investigasi mengenai malam Kamis? Sejujurnya, saya tidak terlalu mengikuti gosip di komplek ini. Malam itu saya hanya menjaga toko seperti biasanya. Waktu itu yang datang ke toko juga sedikit; remaja sekolah yang beli untuk merayakan kelulusan, ada juga mahasiswa dengan tampilan gelap dan rambut panjang ombre, ada juga bapak-bapak bertubuh kurus kering yang ingin membeli untuk mengecat furniturnya. Kami sebenarnya memiliki langganan setia toko bernama Bara dan Luthfi, sering kali saya memberikan cans gratis ke mereka. Namun, seingat saya, Bara dan Luthfi tidak kesini malam itu sebab minggu lalu mereka sudah belanja spray cans dengan jumlah yang banyak. ",
     icon: WitnessIcon,
     characterId: "reivan",
+    isAlibi: false,
+  },
+  RABHYA: {
+    type: "Rabhya Wibowo",
+    title: "WAWANCARA 1",
+    subtitle: "Tukang Furnitur Paruh Waktu",
+    imageUrl: "/rabhya.png",
+    content: "Saya tentu menyayangkan kejadian ini... Pak Yong dan Bu Malo adalah warga lama di Komplek Pelita. Kehilangan mereka tentu sangat berdampak, terutama bagi saya yang memikul tanggung jawab di lingkungan ini. Malam sebelum Pak Yong dan Bu Malo menghilang, mereka berdua sempat datang ke rumah untuk menemui saya. Mereka mendesak agar saya mengambil tindakan tegas untuk mengusir Bara dan Luthfi. Keduanya memang sudah lama dikenal problematik oleh warga. Beberapa hari lalu polisi bahkan datang ke komplek kami hanya untuk menanyakan soal mereka berdua, inilah puncaknya. Tapi, sebagai seseorang yang pernah bersumpah menjaga hukum dan negara, saya tidak bisa bertindak gegabah. Semua masih berupa dugaan, belum ada bukti sah. Saya jelaskan kepada mereka bahwa saya harus adil, suka atau tidak suka. Mereka kecewa, sempat marah sebelum akhirnya keluar dari rumah. Setelah mereka pergi... saya sudah tidak tahu lagi mereka ke mana.",
+    icon: WitnessIcon,
+    characterId: "rabhya",
+    isAlibi: true,
+  },
+  RABHYA_2: {
+    type: "Rabhya Wibowo",
+    title: "WAWANCARA 2",
+    subtitle: "Tukang Furnitur Paruh Waktu",
+    imageUrl: "/rabhya.png",
+    content: "Oh iya mengenai mobil yang di depan rumah kosong itu ya? Ha-ha- Saya lupa mobil itu disitu.. Sengaja saya letakkan sebab Andos biasanya pinjam jika ada kebutuhan mengenai kegiatan di TPS. Saya sangat mendukung Andos sepenuhnya sebagai ketua pengelola TPS di perumahan kami. Visi misi kami nyambung makanya saya selalu memastikan dapat memfasilitasi dengan sebaik-baiknya.",
+    icon: WitnessIcon,
+    characterId: "rabhya",
     isAlibi: false,
   },
   DIMAS_PRAKASA_2: {
