@@ -105,6 +105,13 @@ export const charactersData: Character[] = [
     description: `Bara adalah warga Pelita yang baru saja kembali dari kampung halamannya dan menempati rumah bernomorkan empat puluh dua setelah kepergian Sang Ibu. Bara adalah individu yang terus terang dan mudah emosi, tampilannya nyentrik karena kesukaannya terhadap budaya punk. Perlawanan yang sangat kental pada budaya ini ia tuangkan pada setiap karya sebagai seorang seniman street art.`,
     imageUrl: "/bara.png",
   },
+  {
+    id: "andos",
+    name: `Andos Sihombing`,
+    role: "Pebisnis dan Aktivis Lingkungan",
+    description: `Andos, putra dari Bu Malo, adalah seorang pebisnis sukses yang membangun karirnya atas dasar kecintaan terhadap lingkungan. Ia dikenal sebagai sosok yang sangat produktif dan selalu mengisi hari-harinya dengan berbagai kegiatan bermanfaat. Tak heran, saat diberi kepercayaan untuk menjadi Ketua Pengelola TPS di lingkungannya, ia menyambutnya dengan antusias demi mewujudkan lingkungan yang lebih asri.`,
+    imageUrl: "/andos.png",
+  },
 
 ];
 
@@ -153,6 +160,28 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
     content: "Selamat datang-, oh investigasi mengenai malam Kamis? Sejujurnya, saya tidak terlalu mengikuti gosip di komplek ini. Malam itu saya hanya menjaga toko seperti biasanya. Waktu itu yang datang ke toko juga sedikit; remaja sekolah yang beli untuk merayakan kelulusan, ada juga mahasiswa dengan tampilan gelap dan rambut panjang ombre, ada juga bapak-bapak bertubuh kurus kering yang ingin membeli untuk mengecat furniturnya. Kami sebenarnya memiliki langganan setia toko bernama Bara dan Luthfi, sering kali saya memberikan cans gratis ke mereka. Namun, seingat saya, Bara dan Luthfi tidak kesini malam itu sebab minggu lalu mereka sudah belanja spray cans dengan jumlah yang banyak. ",
     icon: WitnessIcon,
     characterId: "reivan",
+    isAlibi: false,
+  },
+  ANDOS: {
+    type: "Pebisnis dan Aktivis Lingkungan",
+    title: "WAWANCARA 1",
+    subtitle: "Pebisnis dan Aktivis Lingkungan",
+    imageUrl: "/andos.png",
+    content: `Jujur saja, Detektif, saya sangat terpukul. Hubungan saya dan Ibu belakangan memang kurang baik; kami sering bertengkar karena beliau tidak setuju saya menjabat sebagai Ketua Pengelola TPS. Ibu enggan melihat saya bekerja sama terlalu dekat dengan Pak Rabhya, padahal niat saya murni hanya ingin memperbaiki tatanan pengelolaan sampah di komplek ini.
+Bagi saya, Pak Rabhya adalah sosok yang luar biasa. Beliau sendiri yang menunjuk saya karena kami memiliki visi dan misi yang sama soal lingkungan. Akibat perselisihan dengan Ibu, saya bahkan hanya pulang ke rumah untuk tidur saja selama dua minggu terakhir.
+Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada mesin pengolah sampah yang rusak dan perlu diperbaiki. Mesin itu sudah mati seminggu, jadi saya harus memantau pengerjaannya semalaman bersama beberapa petugas lain. Saya sungguh menyesal.. seandainya malam itu saya ada di rumah, mungkin Ibu tidak akan menghilang begitu saja tanpa saya ketahui. (Silahkan buka kartu nomor 22)`,
+    icon: WitnessIcon,
+    characterId: "andos",
+    isAlibi: true,
+  },
+  ANDOS2: {
+    type: "Pebisnis dan Aktivis Lingkungan",
+    title: "WAWANCARA 2",
+    subtitle: "Pebisnis dan Aktivis Lingkungan",
+    imageUrl: "/andos.png",
+    content: `Pisau ini didapatkan oleh petugas dari tempat sampah Bara dan Luthfi. Saya barusan saja pergi ke rumah mereka untuk menegur sebab pisau yang dibuang tidak diberikan penutup apa-apa. Betapa bahayanya bagi para petugas apabila terinjak. Bara dan Luthfi sendiri mengaku mereka tidak mengetahui pisau itu milik siapa, tapi sepertinya itu hanya dikatakan agar mereka menghindari omelan saya.`,
+    icon: WitnessIcon,
+    characterId: "andos",
     isAlibi: false,
   },
   BARA: {
