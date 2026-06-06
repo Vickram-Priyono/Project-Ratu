@@ -112,6 +112,13 @@ export const charactersData: Character[] = [
     description: `Andos, putra dari Bu Malo, adalah seorang pebisnis sukses yang membangun karirnya atas dasar kecintaan terhadap lingkungan. Ia dikenal sebagai sosok yang sangat produktif dan selalu mengisi hari-harinya dengan berbagai kegiatan bermanfaat. Tak heran, saat diberi kepercayaan untuk menjadi Ketua Pengelola TPS di lingkungannya, ia menyambutnya dengan antusias demi mewujudkan lingkungan yang lebih asri.`,
     imageUrl: "/andos.png",
   },
+  {
+    id: "abyaz",
+    name: `Abyaz Mahendra Wibowo`,
+    role: "Mahasiswa",
+    description: `Abyaz, mahasiswa tingkat akhir jurusan musik, dikenal pendiam dan selalu bersembunyi di balik gaya rocker serba gelapnya. Di rumah, ia menjadi titik tengah konflik: target kritik tajam Ibu Ratu namun selalu dibela oleh Pak Rabhya. Ketidaksukaannya pada standar tinggi sang ibu membuat Abyaz sangat loyal kepada ayahnya.`,
+    imageUrl: "/abyaz.png",
+  },
 
 ];
 
@@ -212,6 +219,29 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
     content: `Aduh Detektif, jujur saja saya sudah tidak tahan lagi melihat kelakuan warga di Blok Pelita ini. Apalagi si Bara dan Luthfi itu. Saya ini istri Ketua RT, martabat keluarga kami itu nomor satu, dan dua orang itu jelas-jelas merusak apa yang suami saya telah pertahankan. Saya sudah berkali-kali melarang Abyaz bergaul dengan mereka karena mereka ini pengaruh buruk! Abyaz anak saya? Oh, dia anak yang baik. Biarpun penampilannya... yah, Detektif lihat sendiri lah, itu cuma fase sementara mahasiswa. Terkait kedatangan Pak Yong dan Bu Malo, saya tidak melihat mereka karena sedang arisan di rumah teman. Saya baru pulang pukul 21.00 WIB dan langsung tidur karena kelelahan. Kalau saja saya tahu mereka datang hanya untuk memarahi suami saya, saya pasti akan pasang badan.`,
     icon: WitnessIcon,
     characterId: "ratu",
+    isAlibi: false,
+  },
+  ABYAZ: {
+    type: "Abyaz Mahendra Wibowo",
+    title: "WAWANCARA 1",
+    subtitle: "Mahasiswa",
+    imageUrl: "/abyaz.png",
+    content: `Hm Pak Yong dan Bu Malo ya? Wah kemarin sempet kesini. Sempat terjadi argumen di antara Bapak, Pak Yong, dan Bu Malo perkara permasalahan Bara dan Luthfi. Saya mendengar nama saya disebut oleh Ibu Malo dan memutuskan untuk keluar. Tapi tidak terjadi apa-apa sih karena tidak lama mereka berdua keluar dari rumah pada pukul 20.00 WIB.
+Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mereka. Sejak Bara kembali dari kampung dan tinggal di rumah peninggalan nyokapnya, mereka jadi makin liar. Awalnya cuma tagging atau vandalisme bareng di kolong jembatan buat lepas stres, tapi lama-lama mereka mainnya malah makin jauh. Makanya deh sekarang udah jarang ngikut mereka tagging lagi. Males aja kalau misal mereka sudah “tidur” sembarangan karena obat, saya yang repot.
+`,
+    icon: WitnessIcon,
+    characterId: "abyaz",
+    isAlibi: true,
+  },
+  ABYAZ2: {
+    type: "Abyaz Mahendra Wibowo",
+    title: "WAWANCARA 2",
+    subtitle: "Mahasiswa",
+    imageUrl: "/abyaz.png",
+    content: `Hmm.. spray cans ya? Itu memang brand yang biasa saya gunakan sih, tapi sudah jarang dipakai karena ya saya sudah jarang juga tagging bareng Bara dan Luthfi. Mungkin punya mereka kali Pak.
+`,
+    icon: WitnessIcon,
+    characterId: "abyaz",
     isAlibi: false,
   },
   DAMALI: {
