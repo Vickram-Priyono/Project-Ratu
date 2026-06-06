@@ -56,7 +56,7 @@ export const charactersData: Character[] = [
     description: "Berawal dari kecintaannya pada street art, Reivan akhirnya berhasil mengembangkan merek cat semprot (pilox) miliknya sendiri. Toko pertamanya, \"Kings Spray Cans\", resmi didirikan lima tahun lalu dengan memanfaatkan kediaman pribadinya sebagai toko.",
     imageUrl: "/reivann.png",
   },
-    {
+  {
     id: "rabya",
     name: "Rabhya Wibowo",
     role: "Tukang Furnitur Paruh Waktu",
