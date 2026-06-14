@@ -27,6 +27,9 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
   // Find alibi item
   const alibiItem = characterItems.find((item) => item.isAlibi);
 
+  // Find other items (excluding the main alibi item)
+  const otherItems = characterItems.filter((item) => !item.isAlibi);
+
   useEffect(() => {
     if (alibiItem?.audioUrl) {
       audioRef.current = new Audio(alibiItem.audioUrl);
@@ -133,36 +136,13 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
                       {character.description}
                     </p>
                   </div>
-
-                  {characterItems.length > 0 && (
-                    <div className="pt-2">
-                      <h3 className="text-xs font-bold text-amber-400/80 uppercase tracking-wider mb-2">
-                        Pernyataan / Bukti Lainnya ({characterItems.length})
-                      </h3>
-                      <ul className="space-y-2">
-                        {characterItems.map((item) => (
-                          <li key={item.id}>
-                            <button
-                              onClick={() => onSelectItem?.(item)}
-                              className="w-full text-left bg-slate-800/40 hover:bg-slate-700/50 hover:border-amber-400/50 p-3 rounded-lg border border-slate-700 text-sm text-slate-300 flex items-start gap-3 transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none focus:ring-1 focus:ring-amber-400/50"
-                            >
-                              <div className="mt-0.5 text-amber-400/80 flex-shrink-0">
-                                <item.icon className="w-4 h-4" />
-                              </div>
-                              <span className="font-medium flex-grow">{item.title}</span>
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
               </div>
             )}
 
             {/* Alibi View */}
             {activeTab === "alibi" && (
-              <div className="animate-fade-in text-left">
+              <div className="animate-fade-in text-left space-y-6">
                 {alibiItem ? (
                   <div className="space-y-5">
                     <div className="flex items-center gap-4">
@@ -216,6 +196,30 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
                     <p className="text-sm text-slate-400 max-w-[280px] leading-relaxed">
                       Pernyataan alibi karakter ini masih terkunci. Harap pindai QR code spesifik karakter ini untuk membukanya.
                     </p>
+                  </div>
+                )}
+
+                {/* Sub-section: Pernyataan & Barang Bukti */}
+                {otherItems.length > 0 && (
+                  <div className="pt-4 border-t border-slate-600/80">
+                    <h3 className="text-xs font-bold text-amber-400/80 uppercase tracking-wider mb-3">
+                      Pernyataan & Barang Bukti Lainnya ({otherItems.length})
+                    </h3>
+                    <ul className="space-y-2">
+                      {otherItems.map((item) => (
+                        <li key={item.id}>
+                          <button
+                            onClick={() => onSelectItem?.(item)}
+                            className="w-full text-left bg-slate-800/45 hover:bg-slate-700/50 hover:border-amber-400/50 p-3 rounded-lg border border-slate-700 text-sm text-slate-300 flex items-start gap-3 transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none focus:ring-1 focus:ring-amber-400/50"
+                          >
+                            <div className="mt-0.5 text-amber-400/80 flex-shrink-0">
+                              <item.icon className="w-4 h-4" />
+                            </div>
+                            <span className="font-medium flex-grow">{item.title}</span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
