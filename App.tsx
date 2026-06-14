@@ -256,7 +256,7 @@ const App: React.FC = () => {
                       className="text-4xl md:text-5xl font-bold text-amber-300 tracking-wider mb-2"
                       style={{ fontFamily: "monospace", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
                     >
-                      Detectified
+                      Justified
                     </h1>
                     <p className="text-gray-200 mt-2 font-medium" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
                       Pindai QR code pada kartu untuk mendapatkan alibi atau
