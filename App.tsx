@@ -58,6 +58,7 @@ const App: React.FC = () => {
   });
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [currentItem, setCurrentItem] = useState<HistoryItem | null>(null);
+  const [resultBackView, setResultBackView] = useState<View>("history");
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -158,6 +159,7 @@ const App: React.FC = () => {
     (item: HistoryItem) => {
       triggerHapticFeedback();
       setCurrentItem(item);
+      setResultBackView("history");
       navigateTo("result");
     },
     [navigateTo]
@@ -174,6 +176,7 @@ const App: React.FC = () => {
 
   const handleAnimationComplete = useCallback(() => {
     setIsAnimating(false);
+    setResultBackView("history");
     navigateTo("result", "none");
   }, [navigateTo]);
 
@@ -216,7 +219,7 @@ const App: React.FC = () => {
                 currentItem && (
                   <ResultDisplay
                     item={currentItem}
-                    onBack={() => navigateTo("history")}
+                    onBack={() => navigateTo(resultBackView)}
                   />
                 )
               );
@@ -235,6 +238,12 @@ const App: React.FC = () => {
                       character={selectedCharacter}
                       history={history}
                       onBack={() => navigateTo("gallery")}
+                      onSelectItem={(item) => {
+                        triggerHapticFeedback();
+                        setCurrentItem(item);
+                        setResultBackView("character_detail");
+                        navigateTo("result");
+                      }}
                     />
                   )
                );
