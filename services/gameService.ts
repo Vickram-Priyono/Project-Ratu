@@ -171,7 +171,7 @@ const gameData: Record<string, Omit<GameDataItem, "id">> = {
   },
   ANDOS: {
     type: "Pebisnis dan Aktivis Lingkungan",
-    title: "WAWANCARA 1",
+    title: "Andos Sihombing",
     subtitle: "Pebisnis dan Aktivis Lingkungan",
     imageUrl: "/andos.png",
     content: `Jujur saja, Detektif, saya sangat terpukul. Hubungan saya dan Ibu belakangan memang kurang baik; kami sering bertengkar karena beliau tidak setuju saya menjabat sebagai Ketua Pengelola TPS. Ibu enggan melihat saya bekerja sama terlalu dekat dengan Pak Rabhya, padahal niat saya murni hanya ingin memperbaiki tatanan pengelolaan sampah di komplek ini.
@@ -213,7 +213,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   RATU: {
     type: "Ratu Ningtyas Sekarya",
-    title: "WAWANCARA 1",
+    title: "Ratu Ningtyas Sekarya",
     subtitle: "Ibu Rumah Tangga",
     imageUrl: "/ratu.png",
     content: `Aduh Detektif, jujur saja saya sudah tidak tahan lagi melihat kelakuan warga di Blok Pelita ini. Apalagi si Bara dan Luthfi itu. Saya ini istri Ketua RT, martabat keluarga kami itu nomor satu, dan dua orang itu jelas-jelas merusak apa yang suami saya telah pertahankan. Saya sudah berkali-kali melarang Abyaz bergaul dengan mereka karena mereka ini pengaruh buruk! Abyaz anak saya? Oh, dia anak yang baik. Biarpun penampilannya... yah, Detektif lihat sendiri lah, itu cuma fase sementara mahasiswa. Terkait kedatangan Pak Yong dan Bu Malo, saya tidak melihat mereka karena sedang arisan di rumah teman. Saya baru pulang pukul 21.00 WIB dan langsung tidur karena kelelahan. Kalau saja saya tahu mereka datang hanya untuk memarahi suami saya, saya pasti akan pasang badan.`,
@@ -223,7 +223,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   ABYAZ: {
     type: "Abyaz Mahendra Wibowo",
-    title: "WAWANCARA 1",
+    title: "Abyaz Mahendra Wibowo",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hm Pak Yong dan Bu Malo ya? Wah kemarin sempet kesini. Sempat terjadi argumen di antara Bapak, Pak Yong, dan Bu Malo perkara permasalahan Bara dan Luthfi. Saya mendengar nama saya disebut oleh Ibu Malo dan memutuskan untuk keluar. Tapi tidak terjadi apa-apa sih karena tidak lama mereka berdua keluar dari rumah pada pukul 20.00 WIB.
@@ -231,7 +231,7 @@ Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mere
 `,
     icon: WitnessIcon,
     characterId: "abyaz",
-    isAlibi: true,
+    isAlibi: false,
   },
   ABYAZ2: {
     type: "Abyaz Mahendra Wibowo",
