@@ -234,8 +234,8 @@ Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mere
     isAlibi: false,
   },
   ABYAZ2: {
-    type: "Abyaz Mahendra Wibowo",
-    title: "WAWANCARA 2",
+    type: "WAWANCARA 2",
+    title: "Abyaz Mahendra Wibowo",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hmm.. spray cans ya? Itu memang brand yang biasa saya gunakan sih, tapi sudah jarang dipakai karena ya saya sudah jarang juga tagging bareng Bara dan Luthfi. Mungkin punya mereka kali Pak.
