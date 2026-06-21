@@ -282,7 +282,7 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     title: "WAWANCARA 1",
     subtitle: "Pebisnis",
     imageUrl: "/luthfi.png",
-    content: `Malam Kamis hingga Jumat dini hari... benar, kami memang berada di tempat kejadian sekitar pukul <b>01.00 WIB<b>. Situasi sekitar saat itu sepi sekali, makanya saya dan Bara memutuskan melakukan tagging disitu. Kami tagging sampai dengan pukul <b>03.00 WIB<b>..? Kalau tidak salah jam segitu kami memutuskan untuk berhenti. Mohon maaf Detektif, tapi saya lupa banyak detail tentang malam itu karena efek alkohol. Seingat saya, kami fokus mencari tembok kosong untuk melakukan tagging di bawah jembatan di pukul yang saya tuturkan tadi. Jujur, saya sama sekali tidak tahu-menahu soal pembunuhan tersebut.`,
+    content: `Malam Kamis hingga Jumat dini hari... benar, kami memang berada di tempat kejadian sekitar pukul <strong>01.00 WIB</strong>. Situasi sekitar saat itu sepi sekali, makanya saya dan Bara memutuskan melakukan tagging disitu. Kami tagging sampai dengan pukul <b>03.00 WIB<b>..? Kalau tidak salah jam segitu kami memutuskan untuk berhenti. Mohon maaf Detektif, tapi saya lupa banyak detail tentang malam itu karena efek alkohol. Seingat saya, kami fokus mencari tembok kosong untuk melakukan tagging di bawah jembatan di pukul yang saya tuturkan tadi. Jujur, saya sama sekali tidak tahu-menahu soal pembunuhan tersebut.`,
     icon: WitnessIcon,
     characterId: "luthfi",
     isAlibi: false,
