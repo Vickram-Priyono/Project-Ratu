@@ -53,13 +53,12 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ item, onBack }) => {
 
       <div className="flex-grow overflow-y-auto p-4 pt-16">
         <div className="max-w-xl mx-auto flex flex-col gap-6">
-          <div className="w-full bg-black rounded-sm shadow-[0_4px_16px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-black relative">
+          <div className="w-full rounded-2xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.6)] border border-slate-700/50 relative">
             {!imageError ? (
               <img
                 src={item.imageUrl}
                 alt={item.title}
-                className="w-full h-auto object-cover border border-white/10"
-                style={{ aspectRatio: '1/1' }}
+                className="w-full h-auto block"
                 onError={() => setImageError(true)}
               />
             ) : (

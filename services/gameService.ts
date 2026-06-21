@@ -223,7 +223,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   ABYAZ: {
     type: "Abyaz Mahendra Wibowo",
-    title: "Abyaz Mahendra Wibowo",
+    title: "WAWANCARA 1",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hm Pak Yong dan Bu Malo ya? Wah kemarin sempet kesini. Sempat terjadi argumen di antara Bapak, Pak Yong, dan Bu Malo perkara permasalahan Bara dan Luthfi. Saya mendengar nama saya disebut oleh Ibu Malo dan memutuskan untuk keluar. Tapi tidak terjadi apa-apa sih karena tidak lama mereka berdua keluar dari rumah pada pukul 20.00 WIB.
@@ -234,8 +234,8 @@ Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mere
     isAlibi: false,
   },
   ABYAZ2: {
-    type: "WAWANCARA 2",
-    title: "Abyaz Mahendra Wibowo",
+    type: "Abyaz Mahendra Wibowo",
+    title: "WAWANCARA 2",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hmm.. spray cans ya? Itu memang brand yang biasa saya gunakan sih, tapi sudah jarang dipakai karena ya saya sudah jarang juga tagging bareng Bara dan Luthfi. Mungkin punya mereka kali Pak.

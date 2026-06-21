@@ -36,12 +36,11 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
       <div className="flex-grow overflow-y-auto p-4 pt-4 pb-24">
         <div className="max-w-xl mx-auto flex flex-col gap-5">
           {/* Top Mugshot Profile Photo */}
-          <div className="w-full bg-black rounded-sm shadow-[0_6px_20px_rgba(0,0,0,0.6)] overflow-hidden border-4 border-black relative">
+          <div className="w-full rounded-2xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.6)] border border-slate-700/50 relative">
             <img
               src={character.imageUrl}
               alt={character.name}
-              className="w-full h-auto object-cover border border-white/10"
-              style={{ aspectRatio: "1/1" }}
+              className="w-full h-auto block"
             />
           </div>
 
