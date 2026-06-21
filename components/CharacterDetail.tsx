@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import type { HistoryItem, Character } from "../types";
-import { ChevronLeftIcon, LockIcon, PlayIcon, PauseIcon, WitnessIcon } from "./icons/StaticIcons";
+import { ChevronLeftIcon, WitnessIcon } from "./icons/StaticIcons";
 
 interface CharacterDetailProps {
   character: Character;
@@ -16,51 +16,11 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
   onSelectItem,
 }) => {
   const [activeTab, setActiveTab] = useState<"biodata" | "alibi">("biodata");
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Find all items related to this character
   const characterItems = history.filter(
     (item) => item.characterId === character.id
   );
-
-  // Find alibi item
-  const alibiItem = characterItems.find((item) => item.isAlibi);
-
-  // Find other items (excluding the main alibi item)
-  const otherItems = characterItems.filter((item) => !item.isAlibi);
-
-  useEffect(() => {
-    if (alibiItem?.audioUrl) {
-      audioRef.current = new Audio(alibiItem.audioUrl);
-      audioRef.current.onended = () => setIsPlaying(false);
-    }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, [alibiItem]);
-
-  // Pause audio when switching tabs
-  useEffect(() => {
-    if (activeTab !== "alibi" && isPlaying && audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  }, [activeTab, isPlaying]);
-
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play().catch((e) => console.error("Error playing audio", e));
-      setIsPlaying(true);
-    }
-  };
 
   return (
     <div className="w-full h-full bg-transparent flex flex-col animate-fade-in relative">
@@ -106,7 +66,6 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
               }`}
             >
               Alibi
-              {!alibiItem && <LockIcon className="w-4 h-4 opacity-75" />}
             </button>
           </div>
 
@@ -142,84 +101,38 @@ const CharacterDetail: React.FC<CharacterDetailProps> = ({
 
             {/* Alibi View */}
             {activeTab === "alibi" && (
-              <div className="animate-fade-in text-left space-y-6">
-                {alibiItem ? (
-                  <div className="space-y-5">
-                    <div className="flex items-center gap-4">
-                      {/* Avatar / Profile line icon container */}
-                      <div className="p-3 bg-slate-800 rounded-xl flex-shrink-0 border border-slate-700/50 shadow-inner">
-                        <WitnessIcon className="w-7 h-7 text-amber-400" />
-                      </div>
-                      
-                      {/* Texts and audio play button row */}
-                      <div className="flex-grow flex justify-between items-center gap-2">
-                        <div>
-                          <h1 className="text-2xl font-bold text-white tracking-wide">{character.name}</h1>
-                          <p className="text-sm font-medium text-slate-300">{character.role}</p>
-                        </div>
-                        {alibiItem.audioUrl && (
-                          <button
-                            onClick={togglePlay}
-                            className={`flex-shrink-0 flex items-center justify-center p-2.5 rounded-full border-2 transition-all duration-300 ${
-                              isPlaying 
-                                ? "border-amber-400 text-amber-400 bg-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.3)]" 
-                                : "border-amber-500/80 text-amber-500 hover:bg-amber-500/10 hover:border-amber-400 hover:text-amber-400"
-                            }`}
-                            aria-label={isPlaying ? "Pause Audio" : "Play Audio"}
-                          >
-                            {isPlaying ? (
-                              <PauseIcon className="w-5 h-5" />
-                            ) : (
-                              <PlayIcon className="w-5 h-5 ml-0.5" />
-                            )}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    <hr className="border-slate-600" />
-
-                    <div className="space-y-4 text-slate-200">
-                      {alibiItem.content.split('\n').map((paragraph, idx) => (
-                        <p key={idx} className="leading-relaxed whitespace-pre-wrap">
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
+              <div className="animate-fade-in text-left space-y-4">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="p-3 bg-slate-800 rounded-xl flex-shrink-0 border border-slate-700/50 shadow-inner">
+                    <WitnessIcon className="w-7 h-7 text-amber-400" />
                   </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-white tracking-wide">Pernyataan & Barang Bukti</h2>
+                    <p className="text-xs text-slate-400">Ditemukan: {characterItems.length} item</p>
+                  </div>
+                </div>
+
+                <hr className="border-slate-600" />
+
+                {characterItems.length > 0 ? (
+                  <ul className="space-y-2">
+                    {characterItems.map((item) => (
+                      <li key={item.id}>
+                        <button
+                          onClick={() => onSelectItem?.(item)}
+                          className="w-full text-left bg-slate-800/45 hover:bg-slate-700/50 hover:border-amber-400/50 p-3 rounded-lg border border-slate-700 text-sm text-slate-300 flex items-start gap-3 transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none focus:ring-1 focus:ring-amber-400/50"
+                        >
+                          <div className="mt-0.5 text-amber-400/80 flex-shrink-0">
+                            <item.icon className="w-4 h-4" />
+                          </div>
+                          <span className="font-medium flex-grow text-sm truncate">{item.title}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
                 ) : (
-                  <div className="flex flex-col items-center justify-center py-12 text-center text-slate-300">
-                    <div className="p-4 bg-slate-800/80 rounded-full border border-slate-700 mb-4 shadow-lg">
-                      <LockIcon className="w-10 h-10 text-amber-400/80 animate-pulse" />
-                    </div>
-                    <p className="font-semibold text-white mb-2">Alibi Terkunci</p>
-                    <p className="text-sm text-slate-400 max-w-[280px] leading-relaxed">
-                      Pernyataan alibi karakter ini masih terkunci. Harap pindai QR code spesifik karakter ini untuk membukanya.
-                    </p>
-                  </div>
-                )}
-
-                {/* Sub-section: Pernyataan & Barang Bukti */}
-                {otherItems.length > 0 && (
-                  <div className="pt-4 border-t border-slate-600/80">
-                    <h3 className="text-xs font-bold text-amber-400/80 uppercase tracking-wider mb-3">
-                      Pernyataan & Barang Bukti Lainnya ({otherItems.length})
-                    </h3>
-                    <ul className="space-y-2">
-                      {otherItems.map((item) => (
-                        <li key={item.id}>
-                          <button
-                            onClick={() => onSelectItem?.(item)}
-                            className="w-full text-left bg-slate-800/45 hover:bg-slate-700/50 hover:border-amber-400/50 p-3 rounded-lg border border-slate-700 text-sm text-slate-300 flex items-start gap-3 transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none focus:ring-1 focus:ring-amber-400/50"
-                          >
-                            <div className="mt-0.5 text-amber-400/80 flex-shrink-0">
-                              <item.icon className="w-4 h-4" />
-                            </div>
-                            <span className="font-medium flex-grow">{item.title}</span>
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="text-center py-8 text-sm text-slate-400 italic">
+                    Belum ada pernyataan atau barang bukti yang telah di-scan untuk karakter ini.
                   </div>
                 )}
               </div>
