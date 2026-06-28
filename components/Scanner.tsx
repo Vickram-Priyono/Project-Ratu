@@ -16,7 +16,7 @@ interface Html5QrcodeScanner {
   start(
     // The camera ID can be a string, or a constraints object
     cameraIdOrConfig: string | { facingMode: string },
-    scanConfig: { fps: number; qrbox: { width: number; height: number } },
+    scanConfig: { fps: number; qrbox?: { width: number; height: number } },
     successCallback: (decodedText: string, result: Html5QrcodeResult) => void,
     errorCallback: (errorMessage: string) => void
   ): Promise<void>;
@@ -49,7 +49,7 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
     }
     const html5QrCode = scannerRef.current;
 
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    const config = { fps: 15 };
 
     const startScanner = async () => {
       try {
@@ -113,25 +113,71 @@ const Scanner: React.FC<ScannerProps> = ({ onSuccess, onError, onCancel }) => {
 
   return (
     <div className={`fixed inset-0 bg-black z-40 flex flex-col ${isExiting ? 'animate-slide-out-to-bottom' : 'animate-slide-in-from-bottom'}`}>
-      <div id={elementId} className="w-full flex-grow"></div>
-       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative w-[250px] h-[250px]">
-            {/* Faint background box as a guide */}
-            <div className="w-full h-full border-2 border-white/20 rounded-lg shadow-lg"></div>
-            
-            {/* Prominent corners that align perfectly with the box */}
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-4 border-l-4 border-amber-400 rounded-tl-lg"></div>
-            <div className="absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 border-amber-400 rounded-tr-lg"></div>
-            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-4 border-l-4 border-amber-400 rounded-bl-lg"></div>
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-4 border-r-4 border-amber-400 rounded-br-lg"></div>
+      <style>{`
+        @keyframes scan-laser {
+          0% { top: 5%; opacity: 0.3; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { top: 95%; opacity: 0.3; }
+        }
+        .scanner-laser {
+          animation: scan-laser 2s infinite alternate ease-in-out;
+        }
+      `}</style>
+
+      {/* Camera feed containers covering the entire screen */}
+      <div 
+        id={elementId} 
+        className="absolute inset-0 w-full h-full bg-black [&_video]:w-full [&_video]:h-full [&_video]:object-cover [&_video]:block"
+      ></div>
+
+      {/* Top Overlay Indicator */}
+      <div className="absolute top-8 left-0 right-0 flex justify-center z-50 px-6 text-center pointer-events-none">
+        <div className="bg-slate-900/90 border border-slate-700/50 backdrop-blur-md py-2.5 px-5 rounded-full shadow-lg">
+          <p className="text-sm font-semibold text-amber-400 tracking-wide flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+            Memindai QR Code...
+          </p>
         </div>
       </div>
-      <div className="w-full p-4 bg-gray-900/80 backdrop-blur-sm flex justify-center sticky bottom-0">
+
+      {/* Center scanning target box */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        <div className="relative w-[70vw] h-[70vw] max-w-[280px] max-h-[280px]">
+          {/* Subtle scanning glow inside the box */}
+          <div className="absolute inset-0 bg-amber-400/5 rounded-2xl animate-pulse"></div>
+
+          {/* Faint background box as a guide */}
+          <div className="w-full h-full border border-white/20 rounded-2xl shadow-2xl"></div>
+          
+          {/* Prominent glowing corners */}
+          <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-amber-400 rounded-tl-2xl"></div>
+          <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-amber-400 rounded-tr-2xl"></div>
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-amber-400 rounded-bl-2xl"></div>
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-amber-400 rounded-br-2xl"></div>
+
+          {/* Sweeping Laser Line representing scanning activity */}
+          <div className="scanner-laser absolute left-2 right-2 h-[2.5px] bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-[0_0_12px_#fbbf24]"></div>
+        </div>
+      </div>
+
+      {/* Instruction below scanning target */}
+      <div className="absolute bottom-28 left-0 right-0 flex justify-center z-10 px-6 text-center pointer-events-none">
+        <p className="text-xs text-slate-300 font-medium bg-black/60 backdrop-blur-sm py-1.5 px-4 rounded-full max-w-[280px]">
+          Arahkan kamera ke QR Code berkas / bukti
+        </p>
+      </div>
+
+      {/* Bottom Floating Control Panel */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-50 px-4">
         <button
           onClick={handleCancel}
-          className="px-8 py-3 bg-red-700 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200"
+          className="px-8 py-3 bg-red-600/95 hover:bg-red-500 text-white font-semibold rounded-full shadow-lg border border-red-500/30 backdrop-blur-md transition-all duration-200 active:scale-95 cursor-pointer flex items-center gap-2 text-sm"
         >
-          Cancel
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          Batal Scan
         </button>
       </div>
     </div>
