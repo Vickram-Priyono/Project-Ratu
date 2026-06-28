@@ -183,7 +183,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   ANDOS2: {
     type: "Pebisnis dan Aktivis Lingkungan",
-    title: "WAWANCARA 2",
+    title: "Andos Sihombing",
     subtitle: "Pebisnis dan Aktivis Lingkungan",
     imageUrl: "/andos.png",
     content: `Pisau ini didapatkan oleh petugas dari tempat sampah Bara dan Luthfi. Saya barusan saja pergi ke rumah mereka untuk menegur sebab pisau yang dibuang tidak diberikan penutup apa-apa. Betapa bahayanya bagi para petugas apabila terinjak. Bara dan Luthfi sendiri mengaku mereka tidak mengetahui pisau itu milik siapa, tapi sepertinya itu hanya dikatakan agar mereka menghindari omelan saya.`,
@@ -193,7 +193,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   BARA: {
     type: "Seniman Street Art",
-    title: "WAWANCARA 1",
+    title: "Bara Gumelang",
     subtitle: "Seniman Street Art",
     imageUrl: "/bara.png",
     content: `Harus banget dijawab ya Pak? Kamis malam, Saya dan Luthfi keluar dari daerah Bendungan Hilir, Tanah Abang untuk mencari lokasi tagging sekitar pukul 00.00 WIB menggunakan mobil lama peninggalan Ibu saya. Kami keliling selama 1 jam untuk mencari lokasi. Sebenarnya ada beberapa spot yang kami lihat asik: Setia Budi, Kebayoran Lama, Kebayoran Baru, dan Palmerah. Tetapi, kami akhirnya memutuskan untuk melakukan tagging di kolong jembatan Kebayoran Baru, itu tempat biasa kami tagging dari sebelum-sebelumnya. Kami memang berada di kolong jembatan itu saat dini hari, tapi tujuannya murni untuk melakukan street art. Mengenai korban, saya tidak kaget dengan apa yang terjadi kepada Pak Yong dan Bu Malo. Ya kasihan sih, tapi mereka berdua ini memang cerewet jadi sudah pasti musuhnya banyak. Sialnya saya dan Luthfi adalah salah satu yang mereka cereweti, tapi tidak mungkinlah kami berani sebegitunya dengan yang sudah tua.`,
@@ -203,7 +203,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
   },
   BARA2: {
     type: "Seniman Street Art",
-    title: "WAWANCARA 2",
+    title: "Bara Gumelang",
     subtitle: "Seniman Street Art",
     imageUrl: "/bara.png",
     content: `Kings? Iya, betul itu merek piloks yang biasa saya pakai kalau tagging sama Luthfi. Kami memang pernah tagging di sana, tapi itu sudah seminggu yang lalu—karya yang dibuat juga besar sehingga pilok kami langsung habis saat digunakan di Palmerah dan kaleng-kaleng bekas itu langsung kami buang di tempat sampah terdekat. Sudah ya Detektif, setelah ini saya tidak akan menjawab pertanyaan lagi.`,
@@ -212,7 +212,7 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
     isAlibi: false,
   },
   RATU: {
-    type: "Ratu Ningtyas Sekarya",
+    type: "Ibu Rumah Tangga",
     title: "Ratu Ningtyas Sekarya",
     subtitle: "Ibu Rumah Tangga",
     imageUrl: "/ratu.png",
@@ -222,8 +222,8 @@ Lalu pada malam Kamis itu, saya memutuskan menginap di pos petugas karena ada me
     isAlibi: false,
   },
   ABYAZ: {
-    type: "Abyaz Mahendra Wibowo",
-    title: "WAWANCARA 1",
+    type: "Mahasiswa",
+    title: "Abyaz Mahendra Wibowo",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hm Pak Yong dan Bu Malo ya? Wah kemarin sempet kesini. Sempat terjadi argumen di antara Bapak, Pak Yong, dan Bu Malo perkara permasalahan Bara dan Luthfi. Saya mendengar nama saya disebut oleh Ibu Malo dan memutuskan untuk keluar. Tapi tidak terjadi apa-apa sih karena tidak lama mereka berdua keluar dari rumah pada pukul 20.00 WIB.
@@ -234,8 +234,8 @@ Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mere
     isAlibi: false,
   },
   ABYAZ2: {
-    type: "Abyaz Mahendra Wibowo",
-    title: "WAWANCARA 2",
+    type: "Mahasiswa",
+    title: "Abyaz Mahendra Wibowo",
     subtitle: "Mahasiswa",
     imageUrl: "/abyaz.png",
     content: `Hmm.. spray cans ya? Itu memang brand yang biasa saya gunakan sih, tapi sudah jarang dipakai karena ya saya sudah jarang juga tagging bareng Bara dan Luthfi. Mungkin punya mereka kali Pak.
@@ -245,8 +245,8 @@ Soal Bara dan Luthfi, kami memang teman kecil. Tapi jujur, udah jarang ikut mere
     isAlibi: false,
   },
   DAMALI: {
-    type: `Damali Nasya`,
-    title: "WAWANCARA 1",
+    type: `Ibu Rumah Tangga`,
+    title: "Damali Nasya",
     subtitle: "Ibu Rumah Tangga",
     imageUrl: "/damali.png",
     content: `Malam waktu suami saya keluar menemui Pak RT, saya sudah merasa ada yang tidak beres. Ada aura merah pekat terpancar dari arah rumah Pak Rabhya, dan saya tidak asal bicara ya! Insting saya ini kuat.
@@ -258,8 +258,8 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     isAlibi: false,
   },
   RABHYA: {
-    type: "Rabhya Wibowo",
-    title: "WAWANCARA 1",
+    type: "Tukang Furnitur Paruh Waktu",
+    title: "Rabhya Wibowo",
     subtitle: "Tukang Furnitur Paruh Waktu",
     imageUrl: "/rabhya.png",
     content: "Saya tentu menyayangkan kejadian ini... Pak Yong dan Bu Malo adalah warga lama di Komplek Pelita. Kehilangan mereka tentu sangat berdampak, terutama bagi saya yang memikul tanggung jawab di lingkungan ini. Malam sebelum Pak Yong dan Bu Malo menghilang, mereka berdua sempat datang ke rumah untuk menemui saya. Mereka mendesak agar saya mengambil tindakan tegas untuk mengusir Bara dan Luthfi. Keduanya memang sudah lama dikenal problematik oleh warga. Beberapa hari lalu polisi bahkan datang ke komplek kami hanya untuk menanyakan soal mereka berdua, inilah puncaknya. Tapi, sebagai seseorang yang pernah bersumpah menjaga hukum dan negara, saya tidak bisa bertindak gegabah. Semua masih berupa dugaan, belum ada bukti sah. Saya jelaskan kepada mereka bahwa saya harus adil, suka atau tidak suka. Mereka kecewa, sempat marah sebelum akhirnya keluar dari rumah. Setelah mereka pergi... saya sudah tidak tahu lagi mereka ke mana.",
@@ -268,8 +268,8 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     isAlibi: true,
   },
   RABHYA_2: {
-    type: "Rabhya Wibowo",
-    title: "WAWANCARA 2",
+    type: "Tukang Furnitur Paruh Waktu",
+    title: "Rabhya Wibowo",
     subtitle: "Tukang Furnitur Paruh Waktu",
     imageUrl: "/rabhya.png",
     content: "Oh iya mengenai mobil yang di depan rumah kosong itu ya? Ha-ha- Saya lupa mobil itu disitu.. Sengaja saya letakkan sebab Andos biasanya pinjam jika ada kebutuhan mengenai kegiatan di TPS. Saya sangat mendukung Andos sepenuhnya sebagai ketua pengelola TPS di perumahan kami. Visi misi kami nyambung makanya saya selalu memastikan dapat memfasilitasi dengan sebaik-baiknya.",
@@ -278,8 +278,8 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     isAlibi: false,
   },
   ADINATA: {
-    type: "Cahaya Luthfi Darmawan",
-    title: "WAWANCARA 1",
+    type: "Pebisnis",
+    title: "Cahaya Luthfi Darmawan",
     subtitle: "Pebisnis",
     imageUrl: "/luthfi.png",
     content: `Malam Kamis hingga Jumat dini hari... benar, kami memang berada di tempat kejadian sekitar pukul <b>01.00 WIB</b> . Situasi sekitar saat itu sepi sekali, makanya saya dan Bara memutuskan melakukan tagging disitu. Kami tagging sampai dengan pukul <b>03.00 WIB<b>..? Kalau tidak salah jam segitu kami memutuskan untuk berhenti. Mohon maaf Detektif, tapi saya lupa banyak detail tentang malam itu karena efek alkohol. Seingat saya, kami fokus mencari tembok kosong untuk melakukan tagging di bawah jembatan di pukul yang saya tuturkan tadi. Jujur, saya sama sekali tidak tahu-menahu soal pembunuhan tersebut.`,
@@ -288,8 +288,8 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     isAlibi: false,
   },
   LUTHFI: {
-    type: "Adinata Agung",
-    title: "WAWANCARA 1",
+    type: "Pebisnis",
+    title: "Adinata Agung",
     subtitle: "Pebisnis",
     imageUrl: "/adinata.png",
     content: `Ya, tentu saja saya menyayangkan apa yang menimpa Pak Yong dan Bu Malo. Sangat disayangkan sekali. Mereka berdua adalah pendukung setia saya dan sangat vokal dalam menggalang suara untuk saya. Kamis sore itu sekitar pukul 17.30 WIB Pak Yong dan Bu Malo sempat ke rumah untuk membahas strategi menjelang pemilihan Ketua RT minggu depan, mereka berdua sangat antusias. Setelah itu, semalaman saya sibuk menyusun draf program kerja di ruang kerja saya. Saya tidak punya waktu untuk mengurus hal lain di luar persiapan pemilihan. Bapak tahu sendiri, warga sudah lelah dengan kepemimpinan yang sekarang. Tapi ya, mau bagaimana lagi? `,
@@ -298,8 +298,8 @@ Malam itu saya cuma bisa diam di ruang tamu, mencoba menetralisir aura jahat yan
     isAlibi: false,
   },
   CHANTIKA: {
-    type: "Angelina Chantika",
-    title: "WAWANCARA 1",
+    type: "Ibu Rumah Tangga",
+    title: "Angelina Chantika",
     subtitle: "Ibu Rumah Tangga",
     imageUrl: "/chantika.png",
     content: `Hmm, malam kejadian ya? Aduh Detektif, komplek ini tuh emang lagi panas-panasnya! Gosip yang paling kencang ya perselisihan Pak Yong dan Bu Malo sama anak-anak punk itu, si Bara dan Luthfi, soal isu obat-obatan. Nah, malam Kamis itu saya lihat sendiri Pak Yong sama Bu Malo datang ke rumah Pak Rabhya buat bahas mereka. Karena penasaran, saya sempatkan berhenti sebentar di depan pagar Pak RT buat menguping. Awalnya biasa saja, tapi lama-lama suaranya meninggi, kedengarannya argumen mereka memanas sekali. Karena saya merasa sudah dapat 'inti' gosipnya, sekitar pukul 19.45 WIB saya memutuskan pulang. Jadi saya nggak tahu deh tuh mereka keluar dari sana jam berapa, yang jelas pas saya tinggal sih mereka masih ribut di dalam.
