@@ -1,9 +1,6 @@
 import type { GameDataItem, Character } from "../types";
 import {
-  WitnessIcon,
-  EvidenceIcon,
-  // LocationIcon,
-  ForensicsIcon,
+  WitnessIcon
 } from "../components/icons/StaticIcons";
 
 export const charactersData: Character[] = [
